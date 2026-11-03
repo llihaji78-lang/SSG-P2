@@ -1,0 +1,62 @@
+<!doctype html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/style.css"><title>주차현황 | SSG-P</title></head><body data-page="parking" class=""><div class="app">
+<header class="header">
+  <div class="logo-row">
+    <a href="index.html">
+      <img class="logo-img" src="assets/images/로고.png" alt="SSG-P 로고" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <div class="logo-fallback">SSG-P</div>
+    </a>
+  </div>
+  <div class="header-inner">
+    <button class="store-trigger" id="storeTrigger"><span class="star">★</span><span id="currentStoreName">스타필드마켓 월계점</span><span class="chev">⌄</span></button>
+    <div class="title-line">
+      <h1 class="page-title">주차현황</h1>
+      <a class="bell-btn" href="notifications.html" aria-label="알림함"><span data-icon="bell"></span><span class="badge">1</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="section card status-hero">
+  <div class="status-top">
+    <div><div class="status-label">현재 전체 주차 현황</div><div class="status-count"><strong id="overallAvailable">--면</strong><span class="count-denominator"> / <span id="overallTotal">--면</span></span></div><div class="status-rate-secondary">점유율 <strong id="overallRate">--%</strong></div></div>
+    <div class="siren-pill level-green" id="overallLevel"><span class="siren-dot"></span>여유</div>
+  </div>
+  <div class="progress"><span id="overallProgress"></span></div>
+  <div class="type-row">
+    <div class="type-box"><span>일반주차구역</span><strong id="overallNormal">--면</strong></div>
+    <div class="type-box"><span>장애인주차구역</span><strong id="overallDisabled">--면</strong></div>
+    <div class="type-box"><span>전기차 충전구역</span><strong id="overallEv">--면</strong></div>
+  </div>
+</section>
+<section class="section card card-pad">
+  <div class="section-head"><div><h2>층별 주차 현황</h2><p>층별로 잔여 면수와 주차 유형을 확인하세요.</p></div></div>
+  <div class="floor-tabs" id="floorTabs"></div><div id="floorPanels"></div>
+</section>
+<section class="section card card-pad">
+  <div class="section-head"><div><h2>10·20·30분 후 혼잡도 예상</h2><p>가상 데이터 기반 예측 시뮬레이션</p></div></div>
+  <div class="pred-grid" id="predictionGrid"></div>
+</section>
+<section class="section card card-pad" id="scheduledAlertSection">
+  <div class="section-head"><div><h2>주차 혼잡도 예약 알림</h2><p>시간을 선택하면 해당 시점의 예상 주차 상태를 알려드려요.</p></div></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap" role="group" aria-label="알림 시간 선택">
+    <label class="floor-tab"><input type="radio" name="alertMinutes" value="10" style="margin-right:5px">10분 후</label>
+    <label class="floor-tab"><input type="radio" name="alertMinutes" value="20" checked style="margin-right:5px">20분 후</label>
+    <label class="floor-tab"><input type="radio" name="alertMinutes" value="30" style="margin-right:5px">30분 후</label>
+  </div>
+  <button type="button" class="primary full" style="margin-top:14px" id="scheduleAlertBtn">선택한 시간에 알림 받기</button>
+  <button type="button" class="small-btn" id="cancelScheduledAlertBtn" hidden>예약 취소</button>
+  <p id="scheduledAlertStatus" style="font-size:12px;line-height:1.6;color:#74726f;margin:12px 0 0" aria-live="polite">알림 시간이 설정되지 않았습니다.</p>
+  <p class="note">웹사이트를 열어 둔 상태에서는 예약 시각에 알림을 표시합니다. 닫혀 있는 동안에는 자동 발송되지 않으며, 이후 다시 접속하면 지난 알림을 확인할 수 있습니다. 혼잡도 수치는 현재 가상 데이터 기반 예측값입니다.</p>
+</section>
+<div class="note">혼잡도 기준: 여유 0~69% · 혼잡 70~99% · 만차 100%. 프로젝트에서 설정한 시뮬레이션 기준입니다.</div>
+</main>
+<nav class="bottom-nav"><a class="nav-item active" href="parking.html"><span data-icon="parking"></span><span>주차현황</span></a><a class="nav-item " href="nearby.html"><span data-icon="pin"></span><span>주변 주차장</span></a><a class="nav-item " href="voice.html"><span data-icon="mic"></span><span>음성 서비스</span></a><a class="nav-item " href="vehicle.html"><span data-icon="car"></span><span>내 차량 찾기</span></a></nav>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="store-drawer" id="storeDrawer">
+  <div class="drawer-grip"></div>
+  <div class="drawer-head"><h2>점포 선택</h2><button class="close-btn" id="drawerClose">×</button></div>
+  <div class="store-section"><h3>즐겨찾는 점포</h3><div id="favoriteStores"></div></div>
+  <div class="store-section"><h3>전체 점포</h3><div id="allStores"></div></div>
+</aside>
+</div><script src="assets/js/icons.js"></script><script src="assets/js/main.js"></script><script src="assets/js/scheduled-alert.js"></script></body></html>
