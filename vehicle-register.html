@@ -1,0 +1,26 @@
+<!doctype html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/style.css"><title>차량 등록 | SSG-P</title></head><body data-page="register" class="form-page"><div class="app"><div class="logo-row"><a href="index.html"><img class="logo-img" src="assets/images/로고.png" alt="SSG-P 로고" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="logo-fallback">SSG-P</div></a></div>
+<main>
+<div class="modal-top"><div></div><h1>차량 등록</h1><button class="x-btn" onclick="location.href='vehicle.html'">×</button></div>
+<form id="vehicleForm">
+  <div class="field"><label for="region">지역</label><select class="select" id="region" name="region">
+    <option>지역 없음</option><option>서울</option><option>부산</option><option>대구</option><option>인천</option><option>광주</option><option>대전</option><option>울산</option><option>경기</option><option>강원</option><option>충북</option><option>충남</option><option>전북</option>
+  </select><div class="help">2003년 이후 등록 차량은 ‘지역 없음’을 선택하세요.</div></div>
+  <div class="field"><label>차량번호</label><div class="plate-grid">
+    <input class="input" name="front" inputmode="numeric" maxlength="3" placeholder="123" required>
+    <input class="input" name="middle" maxlength="1" placeholder="가" required>
+    <input class="input" name="back" inputmode="numeric" maxlength="4" placeholder="4567" required>
+  </div><div class="help">예시 문자는 입력값이 아니라 안내용 placeholder로 옅은 회색으로 표시됩니다.</div></div>
+  <div class="check-box"><h3>! 꼭 확인하세요</h3><ul>
+    <li>지역 입력란은 차 번호판에 지역명이 있는 경우에만 선택하세요(2003년 이전 등록차량).</li>
+    <li>지역명이 없는 차량은 반드시 ‘지역 없음’으로 등록해야 합니다.</li>
+    <li>등록된 차량번호로 구매금액별 무료주차 시간이 반영됩니다.</li>
+    <li>등록된 차량번호로 입차하고 결제 시 신세계포인트를 적립해야 주차비 자동정산이 가능합니다.</li>
+    <li>차량번호가 잘못 등록된 경우 주차비 자동정산과 주차권 사용이 제대로 되지 않을 수 있습니다.</li>
+    <li>신세계포인트를 타인 명의로 적립하면 주차비 자동정산이 불가할 수 있습니다.</li>
+    <li>임시번호, 외교차량 등 일부 차량은 등록이 불가합니다.</li>
+  </ul></div>
+  <button class="primary full" style="margin-top:18px" type="submit">차량 등록</button>
+</form>
+</main>
+</div><script src="assets/js/icons.js"></script><script src="assets/js/main.js"></script></body></html>

@@ -1,0 +1,41 @@
+<!doctype html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/style.css"><title>음성 서비스 | SSG-P</title></head><body data-page="voice" class=""><div class="app">
+<header class="header">
+  <div class="logo-row">
+    <a href="index.html">
+      <img class="logo-img" src="assets/images/로고.png" alt="SSG-P 로고" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <div class="logo-fallback">SSG-P</div>
+    </a>
+  </div>
+  <div class="header-inner">
+    <button class="store-trigger" id="storeTrigger"><span class="star">★</span><span id="currentStoreName">스타필드마켓 월계점</span><span class="chev">⌄</span></button>
+    <div class="title-line">
+      <h1 class="page-title">음성 서비스</h1>
+      <a class="bell-btn" href="notifications.html" aria-label="알림함"><span data-icon="bell"></span><span class="badge">1</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="voice-wrap">
+  <span class="voice-subtitle">음성 주차 안내</span><h2>무엇을 도와드릴까요?</h2><p>궁금한 주차 정보를 음성으로 물어보세요.</p>
+  <button class="mic" id="micBtn" aria-label="음성 질문 시작"><span data-icon="mic"></span></button><p id="micStatus">버튼을 누르고 말씀해 주세요.</p>
+  <div class="guide"><h3>이렇게 질문해 보세요</h3>
+    <div class="guide-row"><b>전체 현황</b><p>“지금 주차장 혼잡해?”</p></div>
+    <div class="guide-row"><b>층별 현황</b><p>“4층에 빈자리 있어?”</p></div>
+    <div class="guide-row"><b>충전구역</b><p>“전기차 충전할 곳 있어?”</p></div>
+    <small>위 질문은 안내 예시이며 클릭하거나 선택하는 버튼이 아닙니다.</small>
+  </div>
+  <div class="result-card"><label>음성 인식 결과</label><p id="recognized">질문을 시작하면 인식된 문장이 표시됩니다.</p></div>
+  <div class="result-card"><label>음성 안내 결과</label><p id="answer">조회 결과가 여기에 표시됩니다.</p><button class="small-btn" id="replay" disabled>다시 듣기</button></div>
+</section>
+</main>
+<nav class="bottom-nav"><a class="nav-item " href="parking.html"><span data-icon="parking"></span><span>주차현황</span></a><a class="nav-item " href="nearby.html"><span data-icon="pin"></span><span>주변 주차장</span></a><a class="nav-item active" href="voice.html"><span data-icon="mic"></span><span>음성 서비스</span></a><a class="nav-item " href="vehicle.html"><span data-icon="car"></span><span>내 차량 찾기</span></a></nav>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="store-drawer" id="storeDrawer">
+  <div class="drawer-grip"></div>
+  <div class="drawer-head"><h2>점포 선택</h2><button class="close-btn" id="drawerClose">×</button></div>
+  <div class="store-section"><h3>즐겨찾는 점포</h3><div id="favoriteStores"></div></div>
+  <div class="store-section"><h3>전체 점포</h3><div id="allStores"></div></div>
+</aside>
+</div><script src="assets/js/icons.js"></script><script src="assets/js/main.js"></script></body></html>

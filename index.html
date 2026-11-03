@@ -1,0 +1,23 @@
+<!doctype html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/style.css"><title>SSG-P</title></head>
+<body data-page="home"><div class="app">
+<header class="header"><div class="logo-row"><a href="index.html"><img class="logo-img" src="assets/images/로고.png" alt="SSG-P 로고" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="logo-fallback">SSG-P</div></a></div>
+<div class="header-inner"><button class="store-trigger" id="storeTrigger"><span class="star">★</span><span id="currentStoreName">스타필드마켓 월계점</span><span class="chev">⌄</span></button></div></header>
+<main>
+<section class="hero"><div class="eyebrow">TRADERS SMART PARKING</div><h1>주차의 시작부터<br>내 차를 찾는 순간까지.</h1><p>SSG-P에서 주차 현황, 주변 정보, 음성 안내, 차량 위치를 한 번에 확인하세요.</p></section>
+<section class="home-grid">
+<a class="home-card" href="parking.html"><div><div class="icon-box" data-icon="parking"></div><h2>주차 현황</h2><p>현재·층별 혼잡도 및 잔여 주차 대수</p></div></a>
+<a class="home-card" href="nearby.html"><div><div class="icon-box" data-icon="pin"></div><h2>주변 주차장</h2><p>무료·유료 주차장 및 대중교통 정보·지도</p></div></a>
+<a class="home-card" href="voice.html"><div><div class="icon-box" data-icon="mic"></div><h2>음성 서비스</h2><p>음성 질문을 통한 주차 현황 조회·안내</p></div></a>
+<a class="home-card" href="vehicle.html"><div><div class="icon-box" data-icon="car"></div><h2>내 차량 찾기</h2><p>층별 주차장 도면 및 내 차량 위치 확인</p></div></a>
+</section>
+<div class="note">프로토타입에서는 주차 현황과 혼잡도 예측에 가상 데이터를 사용하며, 실제 월계점 3·4층 도면을 차량 위치 화면에 활용합니다.</div>
+</main>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="store-drawer" id="storeDrawer">
+  <div class="drawer-grip"></div>
+  <div class="drawer-head"><h2>점포 선택</h2><button class="close-btn" id="drawerClose">×</button></div>
+  <div class="store-section"><h3>즐겨찾는 점포</h3><div id="favoriteStores"></div></div>
+  <div class="store-section"><h3>전체 점포</h3><div id="allStores"></div></div>
+</aside>
+</div><script src="assets/js/icons.js"></script><script src="assets/js/main.js"></script></body></html>

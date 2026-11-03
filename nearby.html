@@ -1,0 +1,42 @@
+<!doctype html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/style.css"><title>주변 주차장 | SSG-P</title></head><body data-page="nearby" class=""><div class="app">
+<header class="header">
+  <div class="logo-row">
+    <a href="index.html">
+      <img class="logo-img" src="assets/images/로고.png" alt="SSG-P 로고" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <div class="logo-fallback">SSG-P</div>
+    </a>
+  </div>
+  <div class="header-inner">
+    <button class="store-trigger" id="storeTrigger"><span class="star">★</span><span id="currentStoreName">스타필드마켓 월계점</span><span class="chev">⌄</span></button>
+    <div class="title-line">
+      <h1 class="page-title">주변 주차장</h1>
+      <a class="bell-btn" href="notifications.html" aria-label="알림함"><span data-icon="bell"></span><span class="badge">1</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="section"><div class="seg-tabs" data-tab-group="nearby"><button class="seg-tab active" data-tab="parking">주변 주차장</button><button class="seg-tab" data-tab="transit">대중교통</button></div></section>
+<section class="section"><div id="realMap" class="map-shell map-actual" role="region" aria-label="카카오 지도"></div>
+<div id="mapNotice" class="map-hint">실제 카카오맵을 불러오는 중입니다.</div></section>
+<section class="section floor-panel active" data-tab-content-group="nearby" data-tab-content="parking">
+<div class="section-head"><div><h2>매장 주변 실제 주차장</h2><p>지도에 실제 주차장을 검색해 표시합니다. 길찾기는 제공하지 않습니다.</p></div></div>
+<div class="info-list" id="parkingResults"><div class="note">카카오 지도에서 실제 주차장을 조회합니다.</div></div>
+<div class="note">요금은 운영기관에서 확인된 정보만 표시합니다. 보행시간은 지도 서비스의 직선거리 추정치가 아닌 실제 보행 경로가 필요하므로, 아직 검증되지 않은 장소는 ‘도보 시간 확인 필요’로 표시합니다.</div>
+</section>
+<section class="section floor-panel" data-tab-content-group="nearby" data-tab-content="transit">
+<div class="section-head"><div><h2>대중교통</h2><p>실제 정류장·역 위치와 매장 공식 교통 정보를 안내합니다.</p></div></div>
+<div class="info-list" id="transportResults"><div class="note">실제 장소를 확인하는 중입니다.</div></div>
+<div class="note">월계점 공식 안내: 월계역 2번 출구에서 도보 약 15분. 진아교통 종점 147·1222번, 석계역 방면 1135·1136·1132번 환승 안내. 정확한 버스정류장별 운행 노선은 현행 노선 조회 후 표시합니다.</div>
+</section>
+</main>
+<nav class="bottom-nav"><a class="nav-item " href="parking.html"><span data-icon="parking"></span><span>주차현황</span></a><a class="nav-item active" href="nearby.html"><span data-icon="pin"></span><span>주변 주차장</span></a><a class="nav-item " href="voice.html"><span data-icon="mic"></span><span>음성 서비스</span></a><a class="nav-item " href="vehicle.html"><span data-icon="car"></span><span>내 차량 찾기</span></a></nav>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="store-drawer" id="storeDrawer">
+  <div class="drawer-grip"></div>
+  <div class="drawer-head"><h2>점포 선택</h2><button class="close-btn" id="drawerClose">×</button></div>
+  <div class="store-section"><h3>즐겨찾는 점포</h3><div id="favoriteStores"></div></div>
+  <div class="store-section"><h3>전체 점포</h3><div id="allStores"></div></div>
+</aside>
+</div><script src="assets/js/icons.js"></script><script src="assets/js/main.js"></script><script src="assets/js/map-config.js"></script><script src="assets/js/kakao-map.js"></script></body></html>

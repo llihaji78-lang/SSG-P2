@@ -1,0 +1,66 @@
+<!doctype html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/style.css"><title>내 차량 찾기 | SSG-P</title></head><body data-page="vehicle" class=""><div class="app">
+<header class="header">
+  <div class="logo-row">
+    <a href="index.html">
+      <img class="logo-img" src="assets/images/로고.png" alt="SSG-P 로고" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <div class="logo-fallback">SSG-P</div>
+    </a>
+  </div>
+  <div class="header-inner">
+    <button class="store-trigger" id="storeTrigger"><span class="star">★</span><span id="currentStoreName">스타필드마켓 월계점</span><span class="chev">⌄</span></button>
+    <div class="title-line">
+      <h1 class="page-title">내 차량 찾기</h1>
+      <a class="bell-btn" href="notifications.html" aria-label="알림함"><span data-icon="bell"></span><span class="badge">1</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="card vehicle-intro">
+  <h2>차량 등록</h2><p>이 페이지는 차량 등록과 위치 확인 기능을 시뮬레이션합니다. 실제 신세계포인트 계정·주차 정산 시스템에는 연결되지 않습니다.</p>
+  <a class="primary full" style="margin-top:18px" href="vehicle-register.html">차량 등록 바로가기</a>
+</section>
+
+<section class="policy-section"><h3>이용 안내</h3><ul>
+<li>차량번호가 등록돼 있어야 쇼핑 후 결제 시 결제금액에 따른 무료주차 시간이 자동 계산되어 제공됩니다.</li>
+<li>등록된 차량번호로 입차하고, 결제 시 신세계포인트를 적립해야 주차비 자동정산이 가능합니다.</li>
+<li>차량번호가 등록돼 있어야 매월 2시간 주차권 제공 및 사용이 가능합니다.</li>
+<li>2시간 주차권의 무료주차 가능 시간은 최대 2시간으로, 초과 주차 시 요금이 부과됩니다.</li>
+<li>주차권은 출차 5분 전에 사용하여 정산해 주시기 바랍니다.</li>
+<li>주차권은 영업시간 내 1일 1매만 사용 가능합니다.</li>
+<li>다른 주차권 또는 구매 영수증과 합산 가능합니다(최대 5시간까지 적용).</li>
+<li>차량번호 등록은 1인 1대에 한합니다.</li>
+</ul></section>
+
+<section class="policy-section"><h3>무료주차 시간 안내</h3><ul>
+<li>당일 1/3/5/10만원 이상 구매 시, 2/3/4/5시간 무료주차 이용이 가능합니다.</li>
+<li>무료주차 가능 시간은 2시간 주차권 합산 포함 최대 5시간이며, 5시간 초과 주차 시 추가요금이 부과됩니다.</li>
+<li>일부 점포는 무료주차 적용 기준이 상이할 수 있으므로 방문 점포 안내를 확인합니다.</li>
+</ul></section>
+
+<section class="policy-section"><h3>무료주차 가능 점포</h3><p style="font-size:12px;color:#595652;line-height:1.6">주차비 자동정산 서비스 및 주차권 사용은 일부 점포에서만 가능합니다.</p><a class="inline-link" href="eligible-stores.html">대상 점포 확인하기 (이마트 및 이마트 트레이더스)</a></section>
+
+<section class="policy-section"><h3>주차요금</h3><ul><li>기본요금 10분당 1,000원.</li><li>30분 이내 회차 시 무료 ※강릉점 제외.</li><li>구매 영수증(종이, 모바일) 바코드 또는 꼬리표상 바코드로도 주차비 정산 가능.</li></ul></section>
+
+<section class="vehicle-locator" id="vehicleLocator" hidden>
+  <div class="section-head"><div><h2>내 차량 위치 확인</h2><p>프로토타입에서는 등록 차량과 주차면을 연결해 위치를 시뮬레이션합니다.</p></div></div>
+  <div class="vehicle-summary"><div><span>등록 차량</span><strong data-vehicle-number>123가4567</strong></div><div><span>저장된 위치</span><strong id="selectedSpotName">4층 · 주차 위치 시연</strong></div></div>
+  <div class="floor-tabs" style="margin-top:12px"><button class="floor-tab" data-map-floor="3층">3층</button><button class="floor-tab active" data-map-floor="4층">4층</button><button class="floor-tab" data-map-floor="5층">5층</button></div>
+  <div class="floor-map-box" id="floorMapBox"><img id="floorMap" src="assets/images/floor4_cropped.png" alt="주차장 도면"><div class="car-pin" id="carPin" role="img" aria-label="내 차량 위치">●</div><div class="map-disclaimer" id="floorMapLabel">4층 실제 도면에서 주차장 영역만 추출</div></div>
+  <p class="floor-map-note">
+  차량 등록 후 4층의 지정된 주차면에
+  차량 위치가 자동으로 표시됩니다.
+  차량 위치는 시뮬레이션용으로 고정되어 있습니다.
+</p><p class="floor-map-note">노란색 4면은 4층 전기차 충전구역입니다. 5층은 옥상 도면이 없어 3층 배치도를 재사용한 시뮬레이션입니다.</p>
+</section><section class="notice-card" id="noVehicleMsg"><h3>등록된 차량이 없습니다</h3><p>차량 등록 바로가기로 차량번호를 저장하면 주차장 도면과 위치 확인 영역이 나타납니다.</p></section>
+</main>
+<nav class="bottom-nav"><a class="nav-item " href="parking.html"><span data-icon="parking"></span><span>주차현황</span></a><a class="nav-item " href="nearby.html"><span data-icon="pin"></span><span>주변 주차장</span></a><a class="nav-item " href="voice.html"><span data-icon="mic"></span><span>음성 서비스</span></a><a class="nav-item active" href="vehicle.html"><span data-icon="car"></span><span>내 차량 찾기</span></a></nav>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="store-drawer" id="storeDrawer">
+  <div class="drawer-grip"></div>
+  <div class="drawer-head"><h2>점포 선택</h2><button class="close-btn" id="drawerClose">×</button></div>
+  <div class="store-section"><h3>즐겨찾는 점포</h3><div id="favoriteStores"></div></div>
+  <div class="store-section"><h3>전체 점포</h3><div id="allStores"></div></div>
+</aside>
+</div><script src="assets/js/icons.js"></script><script src="assets/js/main.js"></script></body></html>
