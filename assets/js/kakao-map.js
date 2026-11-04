@@ -5,7 +5,11 @@ const key=window.SSGP_KAKAO_JS_KEY;
 const notice=document.getElementById('mapNotice');
 const mapNode=document.getElementById('realMap');
 if(!mapNode)return;
-const storeAddresses={wolgye:'서울 노원구 마들로3길 15',hanam:'경기 하남시 미사대로 750',guseong:'경기 용인시 기흥구 용구대로 2457'};
+const storeAddresses = {
+  wolgye: "서울 노원구 마들로3길 17",
+  hanam: "경기 하남시 미사대로 750",
+  guseong: "경기 용인시 기흥구 용구대로 2457"
+};
 const verified={
  wolgye:[{name:'석계역 공영주차장',query:'석계역 공영주차장 서울 월계동 50-9',fee:'유료',kind:'공영',source:'노원구시설관리공단 공식 요금표'},
  {name:'석계역앞 공영주차장',query:'석계역앞 공영주차장 월계동',fee:'유료',kind:'공영',source:'노원구 공영주차장 안내'},
