@@ -1,4 +1,3 @@
-
 const STORE_DATA = [
   {id:"wolgye", name:"트레이더스 월계점"},
   {id:"hanam", name:"트레이더스 하남점"},
@@ -316,6 +315,167 @@ function initVehicle() {
   changeFloor("4층");
 }
 
+function initVehicleUiStyles() {
+  if (document.getElementById("ssgp-vehicle-ui-styles")) return;
+  const style = document.createElement("style");
+  style.id = "ssgp-vehicle-ui-styles";
+  style.textContent = `
+    .region-picker { position: relative; width: 100%; }
+    .region-picker-trigger {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; min-height: 56px; padding: 0 18px;
+      border: 1px solid #d6dfd8; border-radius: 16px;
+      background: #fff; color: #231916; font: inherit;
+      font-weight: 600; text-align: left; cursor: pointer;
+      box-sizing: border-box;
+    }
+    .region-picker-trigger:focus-visible, .region-picker.open .region-picker-trigger {
+      border-color: #016922; outline: 3px solid rgba(1,105,34,.12);
+    }
+    .region-picker-arrow { color: #016922; font-size: 24px; }
+    .region-picker-menu {
+      position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+      z-index: 300; max-height: 230px; overflow-y: auto;
+      padding: 6px; border: 1px solid #e4e7e4;
+      border-radius: 16px; background: white;
+      box-shadow: 0 14px 36px rgba(35,25,22,.14);
+    }
+    .region-picker-menu[hidden] { display: none !important; }
+    .region-picker-option {
+      display: block; width: 100%; padding: 12px 14px;
+      border: none; border-radius: 10px; background: transparent;
+      color: #231916; text-align: left; font: inherit;
+      cursor: pointer;
+    }
+    .region-picker-option:hover, .region-picker-option:focus-visible,
+    .region-picker-option[aria-selected="true"] {
+      outline: none; background: #edf7f0; color: #016922;
+    }
+    .vehicle-modal-overlay {
+      position: fixed; inset: 0; z-index: 99999;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px; background: rgba(35,25,22,.42);
+    }
+    .vehicle-modal {
+      width: 100%; max-width: 390px; box-sizing: border-box;
+      background: #fff; border-radius: 24px;
+      padding: 28px 24px 24px; text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,.18);
+    }
+    .vehicle-modal-icon {
+      display: grid; place-items: center; margin: 0 auto 16px;
+      width: 56px; height: 56px; border-radius: 18px;
+      background: #edf7f0; color: #016922;
+    }
+    .vehicle-modal h2 { color: #231916; font-size: 20px; margin: 0 0 12px; }
+    .vehicle-modal p { color: #74726f; font-size: 14px; line-height: 1.7; margin: 0 0 24px; }
+    .vehicle-modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .vehicle-modal-actions button { min-height: 48px; border-radius: 13px; font: inherit; font-weight: 700; cursor: pointer; }
+    .vehicle-modal-cancel { background: #f5f6f5; border: 1px solid #e9e7e4; color: #231916; }
+    .vehicle-modal-confirm { background: #016922; border: 1px solid #016922; color: #fff; }
+  `;
+  document.head.appendChild(style);
+}
+
+function initRegionPicker() {
+  const select = document.querySelector(
+    '#vehicleForm select[name="region"]'
+  );
+
+  if (!select) return;
+
+  // 기존 select는 데이터 저장용으로 유지
+  select.classList.add("region-native-select");
+  select.style.setProperty("display", "none", "important");
+  initVehicleUiStyles();
+
+  const picker = document.createElement("div");
+  picker.className = "region-picker";
+
+  const trigger = document.createElement("button");
+  trigger.type = "button";
+  trigger.className = "region-picker-trigger";
+  trigger.setAttribute("aria-expanded", "false");
+
+  const menu = document.createElement("div");
+  menu.className = "region-picker-menu";
+  menu.hidden = true;
+
+  function closeMenu() {
+    menu.hidden = true;
+    trigger.setAttribute("aria-expanded", "false");
+    picker.classList.remove("open");
+  }
+
+  function openMenu() {
+    menu.hidden = false;
+    trigger.setAttribute("aria-expanded", "true");
+    picker.classList.add("open");
+  }
+
+  function updateTrigger() {
+    trigger.innerHTML = "";
+
+    const label = document.createElement("span");
+    label.textContent = select.value;
+
+    const arrow = document.createElement("span");
+    arrow.textContent = "⌄";
+    arrow.className = "region-picker-arrow";
+
+    trigger.append(label, arrow);
+  }
+
+  Array.from(select.options).forEach(option => {
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "region-picker-option";
+    item.textContent = option.textContent;
+
+    item.addEventListener("click", () => {
+      select.value = option.value;
+      select.dispatchEvent(new Event("change", {
+        bubbles: true
+      }));
+
+      updateTrigger();
+      closeMenu();
+      trigger.focus();
+    });
+
+    menu.appendChild(item);
+  });
+
+  trigger.addEventListener("click", () => {
+    menu.hidden ? openMenu() : closeMenu();
+  });
+
+  trigger.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeMenu();
+    if (e.key === "ArrowDown" && menu.hidden) {
+      e.preventDefault();
+      openMenu();
+      menu.querySelector("button")?.focus();
+    }
+  });
+
+  menu.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+      closeMenu();
+      trigger.focus();
+    }
+  });
+
+  document.addEventListener("click", e => {
+    if (!picker.contains(e.target)) closeMenu();
+  });
+
+  picker.append(trigger, menu);
+  select.insertAdjacentElement("afterend", picker);
+
+  updateTrigger();
+}
+
 
 function initRegister(){
   const form=document.querySelector("#vehicleForm");if(!form)return;
@@ -327,27 +487,64 @@ function initRegister(){
     setTimeout(()=>location.href="vehicle.html",700);
   };
 }
+
 function initVehicleDelete() {
   const btn = document.querySelector("#deleteVehicleBtn");
   if (!btn) return;
-
-  // 차량이 등록되지 않았다면 버튼 숨기기
   btn.hidden = !localStorage.getItem("ssgp_vehicle");
+  initVehicleUiStyles();
 
   btn.addEventListener("click", () => {
-    const confirmed = confirm(
-      "등록된 차량을 해제하시겠습니까?"
-    );
+    // 기존 confirm() 대신 SSG-P 자체 확인창 표시
+    const overlay = document.createElement("div");
+    overlay.className = "vehicle-modal-overlay";
+    overlay.innerHTML = `
+      <div class="vehicle-modal" role="dialog" aria-modal="true" aria-labelledby="vehicleModalTitle">
+        <div class="vehicle-modal-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#016922" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 17h14l-1-7H6l-1 7Z"/><path d="m7 10 2-5h6l2 5"/><circle cx="8" cy="17" r="1"/><circle cx="16" cy="17" r="1"/><path d="M6 18v2M18 18v2"/>
+          </svg>
+        </div>
+        <h2 id="vehicleModalTitle">차량 등록을 해제할까요?</h2>
+        <p>등록된 차량번호가 삭제되며,<br>내 차량 위치도 더 이상 표시되지 않습니다.</p>
+        <div class="vehicle-modal-actions">
+          <button type="button" class="vehicle-modal-cancel">취소</button>
+          <button type="button" class="vehicle-modal-confirm">해제하기</button>
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
 
-    if (!confirmed) return;
-
-    // 브라우저에 저장된 차량 등록 정보 삭제
-    localStorage.removeItem("ssgp_vehicle");
-
-    // 차량 등록 화면 갱신
-    window.location.reload();
+    const cancel = overlay.querySelector(".vehicle-modal-cancel");
+    const confirmDelete = overlay.querySelector(".vehicle-modal-confirm");
+    const previousFocus = document.activeElement;
+    const close = () => {
+      document.removeEventListener("keydown", onKeyDown);
+      overlay.remove();
+      if (previousFocus && previousFocus.focus) previousFocus.focus();
+    };
+    function onKeyDown(event) {
+      if (event.key === "Escape") close();
+      if (event.key === "Tab") {
+        const next = document.activeElement === cancel ? confirmDelete : cancel;
+        event.preventDefault();
+        next.focus();
+      }
+    }
+    document.addEventListener("keydown", onKeyDown);
+    cancel.addEventListener("click", close);
+    overlay.addEventListener("click", event => {
+      if (event.target === overlay) close();
+    });
+    confirmDelete.addEventListener("click", () => {
+      localStorage.removeItem("ssgp_vehicle");
+      close();
+      window.location.reload();
+    });
+    cancel.focus();
   });
 }
+
+
 document.addEventListener("DOMContentLoaded", () => {
   initCommon();
 
@@ -359,7 +556,10 @@ document.addEventListener("DOMContentLoaded", () => {
     initVehicleDelete();
   }
 
-  if (document.body.dataset.page === "register") initRegister();
+  if (document.body.dataset.page === "register") {
+  initRegister();
+  initRegionPicker();
+}
 });
 
 
