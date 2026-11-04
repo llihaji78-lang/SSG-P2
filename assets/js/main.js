@@ -327,13 +327,39 @@ function initRegister(){
     setTimeout(()=>location.href="vehicle.html",700);
   };
 }
+function initVehicleDelete() {
+  const btn = document.querySelector("#deleteVehicleBtn");
+  if (!btn) return;
 
-document.addEventListener("DOMContentLoaded",()=>{
+  // 차량이 등록되지 않았다면 버튼 숨기기
+  btn.hidden = !localStorage.getItem("ssgp_vehicle");
+
+  btn.addEventListener("click", () => {
+    const confirmed = confirm(
+      "등록된 차량을 해제하시겠습니까?"
+    );
+
+    if (!confirmed) return;
+
+    // 브라우저에 저장된 차량 등록 정보 삭제
+    localStorage.removeItem("ssgp_vehicle");
+
+    // 차량 등록 화면 갱신
+    window.location.reload();
+  });
+}
+document.addEventListener("DOMContentLoaded", () => {
   initCommon();
-  if(document.body.dataset.page==="parking")renderParking();
-  if(document.body.dataset.page==="voice")initVoice();
-  if(document.body.dataset.page==="vehicle")initVehicle();
-  if(document.body.dataset.page==="register")initRegister();
+
+  if (document.body.dataset.page === "parking") renderParking();
+  if (document.body.dataset.page === "voice") initVoice();
+
+  if (document.body.dataset.page === "vehicle") {
+    initVehicle();
+    initVehicleDelete();
+  }
+
+  if (document.body.dataset.page === "register") initRegister();
 });
 
 
