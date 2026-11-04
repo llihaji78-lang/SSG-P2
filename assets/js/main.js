@@ -1,6 +1,6 @@
 
 const STORE_DATA = [
-  {id:"wolgye", name:"스타필드마켓 월계점"},
+  {id:"wolgye", name:"트레이더스 월계점"},
   {id:"hanam", name:"트레이더스 하남점"},
   {id:"guseong", name:"트레이더스 구성점"}
 ];
