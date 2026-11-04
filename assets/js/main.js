@@ -335,3 +335,10 @@ document.addEventListener("DOMContentLoaded",()=>{
   if(document.body.dataset.page==="vehicle")initVehicle();
   if(document.body.dataset.page==="register")initRegister();
 });
+
+
+if (!document.querySelector('script[src$="scheduled-alert.js"]')) {
+  const script = document.createElement("script");
+  script.src = "assets/js/scheduled-alert.js";
+  document.body.appendChild(script);
+}
