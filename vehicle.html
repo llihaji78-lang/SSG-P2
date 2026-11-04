@@ -67,7 +67,32 @@
 
 <section class="vehicle-locator" id="vehicleLocator" hidden>
   <div class="section-head"><div><h2>내 차량 위치 확인</h2><p>프로토타입에서는 등록 차량과 주차면을 연결해 위치를 시뮬레이션합니다.</p></div></div>
-  <div class="vehicle-summary"><div><span>등록 차량</span><strong data-vehicle-number>123가4567</strong></div><div><span>저장된 위치</span><strong id="selectedSpotName">4층 · 주차 위치 시연</strong></div></div>
+  
+<div class="vehicle-summary">
+  <div>
+    <span>등록 차량</span>
+    <strong data-vehicle-number>123가4567</strong>
+  </div>
+
+  <div>
+    <span>저장된 위치</span>
+    <strong id="selectedSpotName">
+      4층 · 지정 주차면 (시뮬레이션)
+    </strong>
+  </div>
+</div>
+
+<div style="display:flex; justify-content:flex-end; margin-top:12px;">
+  <button
+    id="deleteVehicleBtn"
+    type="button"
+    class="small-btn"
+    style="color:#E3483F; margin-top:0;"
+  >
+    차량 등록 해제
+  </button>
+</div>
+
   <div class="floor-tabs" style="margin-top:12px"><button class="floor-tab" data-map-floor="3층">3층</button><button class="floor-tab active" data-map-floor="4층">4층</button><button class="floor-tab" data-map-floor="5층">5층</button></div>
   <div class="floor-map-box" id="floorMapBox"><img id="floorMap" src="assets/images/floor4_cropped.png" alt="주차장 도면"><div class="car-pin" id="carPin" role="img" aria-label="내 차량 위치">●</div><div class="map-disclaimer" id="floorMapLabel">4층 실제 도면에서 주차장 영역만 추출</div></div>
   <p class="floor-map-note">
