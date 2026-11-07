@@ -402,3 +402,58 @@ body[data-page="parking"] .type-box > strong {
     font-size: 17px;
   }
 }
+
+
+/* 네 가지 주요 페이지의 상단 디자인 통일 */
+
+body[data-page="parking"] .header-inner,
+body[data-page="nearby"] .header-inner,
+body[data-page="voice"] .header-inner,
+body[data-page="vehicle"] .header-inner {
+  padding: 0 18px 14px;
+}
+
+body[data-page="parking"] .title-line,
+body[data-page="nearby"] .title-line,
+body[data-page="voice"] .title-line,
+body[data-page="vehicle"] .title-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+body[data-page="parking"] .page-title,
+body[data-page="nearby"] .page-title,
+body[data-page="voice"] .page-title,
+body[data-page="vehicle"] .page-title {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1.3;
+  letter-spacing: -0.7px;
+}
+
+body[data-page="parking"] .store-trigger,
+body[data-page="nearby"] .store-trigger,
+body[data-page="voice"] .store-trigger,
+body[data-page="vehicle"] .store-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+body[data-page="parking"] .store-icon,
+body[data-page="nearby"] .store-icon,
+body[data-page="voice"] .store-icon,
+body[data-page="vehicle"] .store-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: #016922;
+}
