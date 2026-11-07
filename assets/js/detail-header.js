@@ -1,4 +1,4 @@
-/* SSG-P header v2: preserve logo on all pages; home + four detail pages. */
+/* SSG-P header v3: centered logo on home, no logo on detail pages. */
 (() => {
   'use strict';
   const page = document.body?.dataset?.page || '';
@@ -8,11 +8,11 @@
 
   // Keep the original script injection in main.js; replace this file only.
   const existingCss = document.querySelector('link[data-ssgp-detail-header]');
-  if (existingCss) existingCss.href = 'assets/css/detail-header.css?v=20261107-2';
+  if (existingCss) existingCss.href = 'assets/css/detail-header.css?v=20261107-3';
   else {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'assets/css/detail-header.css?v=20261107-2';
+    link.href = 'assets/css/detail-header.css?v=20261107-3';
     link.dataset.ssgpDetailHeader = 'true';
     document.head.appendChild(link);
   }
@@ -46,21 +46,16 @@
   }
   function enhance() {
     const header = document.querySelector('.app > header.header, header.header');
-    if (!header || header.dataset.ssgpDetailEnhanced === 'v2') return;
+    if (!header || header.dataset.ssgpDetailEnhanced === 'v3') return;
     const trigger = header.querySelector('#storeTrigger');
     if (!trigger) return;
 
-    
-  // 최상단 SSG-P 로고 클릭 시 SSG-P 시작화면으로 이동
-  const logoRow = header.querySelector('.logo-row');
-  const logoLink = logoRow?.querySelector('a');
-
-  if (logoLink) {
-    logoLink.href = 'ssgp-home.html';
-  }
-
-  let title = header.querySelector('.page-title');
-
+    // Preserve, not recreate, the original logo and its existing link.
+    const logoRow = header.querySelector('.logo-row');
+    // Keep the logo link and direct its click to the SSG-P landing page.
+    const logoAnchor = logoRow?.querySelector('a');
+    if (logoAnchor) logoAnchor.href = 'ssgp-home.html';
+    let title = header.querySelector('.page-title');
     let bell = header.querySelector('.bell-btn');
     const currentPageTitle = {parking:'주차현황', nearby:'주변 주차장', voice:'음성 서비스', vehicle:'내 차량 찾기'};
     if (!title) {
@@ -68,6 +63,21 @@
       title.className = 'page-title';
       title.textContent = isHome ? '홈' : (currentPageTitle[page] || 'SSG-P');
     } else if (currentPageTitle[page]) title.textContent = currentPageTitle[page];
+
+    // On the SSG-P home page, use the actual logo instead of the '홈' heading.
+    if (isHome) {
+      title.classList.add('ssgp-home-logo-title');
+      title.textContent = '';
+      if (logoAnchor) {
+        title.appendChild(logoAnchor);
+      } else {
+        const landing = document.createElement('a');
+        landing.href = 'ssgp-home.html';
+        landing.className = 'ssgp-home-text-logo';
+        landing.textContent = 'SSG-P';
+        title.appendChild(landing);
+      }
+    }
 
     if (!bell) {
       bell = document.createElement('a');
@@ -87,11 +97,11 @@
     storeRow.className = 'ssgp-detail-store-row';
     storeRow.append(trigger);
 
-    // Relocate existing nodes to retain store drawer and bell listeners.
-    // Keep the logo row at the very top, also on detailed pages.
-    header.replaceChildren(...(logoRow ? [logoRow] : []), top, storeRow);
+    // Relocate nodes to retain store drawer and bell listeners.
+    // No standalone logo row: home logo is centered in the title slot.
+    header.replaceChildren(top, storeRow);
     header.classList.add('ssgp-detail-header');
-    header.dataset.ssgpDetailEnhanced = 'v2';
+    header.dataset.ssgpDetailEnhanced = 'v3';
 
     // Sync newly-created homepage badge with the existing count when available.
     if (isHome) {
