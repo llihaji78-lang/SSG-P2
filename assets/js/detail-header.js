@@ -50,9 +50,17 @@
     const trigger = header.querySelector('#storeTrigger');
     if (!trigger) return;
 
-    // Preserve, not recreate, the original logo and its existing link.
-    const logoRow = header.querySelector('.logo-row');
-    let title = header.querySelector('.page-title');
+    
+  // 최상단 SSG-P 로고 클릭 시 SSG-P 시작화면으로 이동
+  const logoRow = header.querySelector('.logo-row');
+  const logoLink = logoRow?.querySelector('a');
+
+  if (logoLink) {
+    logoLink.href = 'ssgp-home.html';
+  }
+
+  let title = header.querySelector('.page-title');
+
     let bell = header.querySelector('.bell-btn');
     const currentPageTitle = {parking:'주차현황', nearby:'주변 주차장', voice:'음성 서비스', vehicle:'내 차량 찾기'};
     if (!title) {
