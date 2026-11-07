@@ -307,3 +307,98 @@ main{padding:24px 18px 104px}
 .floor-map-box{cursor:crosshair}
 .map-action-row{margin-top:10px}
 @media(max-width:430px){.status-count > strong{font-size:38px}.count-denominator{font-size:16px}}
+
+/* 주차현황 - 일반/장애인/전기차/경차 4칸 디자인 */
+
+body[data-page="parking"] .status-hero > .type-row,
+body[data-page="parking"] .floor-summary .type-row {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+}
+
+/* 기존 경차 추가 스크립트의 큰 박스 설정 덮어쓰기 */
+body[data-page="parking"] .status-hero .type-box,
+body[data-page="parking"] .floor-summary .type-box {
+  aspect-ratio: auto !important;
+  height: auto !important;
+  min-height: 88px !important;
+  padding: 13px 15px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  gap: 9px !important;
+  border: 1px solid #e9e7e4;
+  border-radius: 16px;
+  background: #fbfbfa;
+}
+
+/* 제목 + 아이콘 */
+body[data-page="parking"] .type-box > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #74726f;
+  white-space: nowrap;
+}
+
+/* 아이콘 공통 */
+body[data-page="parking"] .type-box > span::before {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 19px;
+  height: 19px;
+  font-size: 17px;
+  line-height: 1;
+}
+
+/* 일반주차 */
+body[data-page="parking"] .type-box:nth-child(1) > span::before {
+  content: "🅿️";
+}
+
+/* 장애인주차 */
+body[data-page="parking"] .type-box:nth-child(2) > span::before {
+  content: "♿";
+}
+
+/* 전기차 충전 */
+body[data-page="parking"] .type-box:nth-child(3) > span::before {
+  content: "⚡";
+}
+
+/* 경차 */
+body[data-page="parking"] .type-box:nth-child(4) > span::before {
+  content: "🚗";
+}
+
+/* 잔여 면수 */
+body[data-page="parking"] .type-box > strong {
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #231916;
+}
+
+/* 휴대폰 화면 */
+@media (max-width: 430px) {
+  body[data-page="parking"] .status-hero .type-box,
+  body[data-page="parking"] .floor-summary .type-box {
+    padding: 11px 9px !important;
+    min-height: 82px !important;
+  }
+
+  body[data-page="parking"] .type-box > span {
+    font-size: 10px;
+    gap: 4px;
+  }
+
+  body[data-page="parking"] .type-box > strong {
+    font-size: 17px;
+  }
+}
