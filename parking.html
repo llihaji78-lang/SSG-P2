@@ -1,5 +1,7 @@
-<!doctype html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<link rel="stylesheet" href="assets/css/style.css"><title>주차현황 | SSG-P</title></head><body data-page="parking" class=""><div class="app">
+<!doctype html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/style.css"><title>주차현황 | SSG-P</title></head>
+<body data-page="parking" class=""><div class="app">
 <header class="header">
   <div class="logo-row">
     <a href="index.html">
@@ -9,47 +11,29 @@
   </div>
   <div class="header-inner">
     <button class="store-trigger" id="storeTrigger">
-<span class="store-icon">
-  <svg width="20" height="20"
-       viewBox="0 0 24 24"
-       fill="none"
-       stroke="#016922"
-       stroke-width="2"
-       stroke-linecap="round"
-       stroke-linejoin="round"
-       aria-hidden="true">
-    <path d="M3 10h18"/>
-    <path d="M5 10V21h14V10"/>
-    <path d="M3 10l2-7h14l2 7"/>
-    <path d="M9 21v-7h6v7"/>
-    <path d="M3 10c0 2 4 2 4 0"/>
-    <path d="M7 10c0 2 4 2 4 0"/>
-    <path d="M11 10c0 2 4 2 4 0"/>
-    <path d="M15 10c0 2 4 2 4 0"/>
-  </svg>
-</span>
-<span id="currentStoreName">스타필드마켓 월계점</span><span class="chev">⌄</span></button>
-    <div class="title-line">
-      <h1 class="page-title">주차현황</h1>
-      <a class="bell-btn" href="notifications.html" aria-label="알림함"><span data-icon="bell"></span>
-<span class="badge" style="display:none"></span>
-</a>
+      <span class="store-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#016922" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 10h18"/><path d="M5 10V21h14V10"/><path d="M3 10l2-7h14l2 7"/><path d="M9 21v-7h6v7"/>
+          <path d="M3 10c0 2 4 2 4 0"/><path d="M7 10c0 2 4 2 4 0"/><path d="M11 10c0 2 4 2 4 0"/><path d="M15 10c0 2 4 2 4 0"/>
+        </svg>
+      </span>
+      <span id="currentStoreName">스타필드마켓 월계점</span><span class="chev">⌄</span>
+    </button>
+    <div class="title-line"><h1 class="page-title">주차현황</h1>
+      <a class="bell-btn" href="notifications.html" aria-label="알림함"><span data-icon="bell"></span><span class="badge" style="display:none"></span></a>
     </div>
   </div>
 </header>
-
 <main>
 <section class="section card status-hero">
   <div class="status-top">
     <div><div class="status-label">현재 전체 주차 현황</div><div class="status-count"><strong id="overallAvailable">--면</strong><span class="count-denominator"> / <span id="overallTotal">--면</span></span></div><div class="status-rate-secondary">점유율 <strong id="overallRate">--%</strong></div></div>
     <div class="overall-signal-wrap" id="overallSignalWrap">
-  <div class="traffic-light horizontal" id="overallTrafficLight" aria-label="전체 혼잡도 신호등">
-    <span class="light green"></span>
-    <span class="light yellow"></span>
-    <span class="light red"></span>
-  </div>
-  <div class="traffic-label" id="overallTrafficText">여유</div>
-</div>
+      <div class="traffic-light horizontal" id="overallTrafficLight" aria-label="전체 혼잡도 신호등">
+        <span class="light green"></span><span class="light yellow"></span><span class="light red"></span>
+      </div>
+      <div class="traffic-label" id="overallTrafficText">여유</div>
+    </div>
   </div>
   <div class="progress"><span id="overallProgress"></span></div>
   <div class="type-row">
@@ -68,10 +52,10 @@
 </section>
 <section class="section card card-pad" id="scheduledAlertSection">
   <div class="section-head"><div><h2>주차 혼잡도 예약 알림</h2><p>시간을 선택하면 해당 시점의 예상 주차 상태를 알려드려요.</p></div></div>
-  <div style="display:flex;gap:8px;flex-wrap:wrap" role="group" aria-label="알림 시간 선택">
-    <label class="floor-tab"><input type="radio" name="alertMinutes" value="10" style="margin-right:5px">10분 후</label>
-    <label class="floor-tab"><input type="radio" name="alertMinutes" value="20" checked style="margin-right:5px">20분 후</label>
-    <label class="floor-tab"><input type="radio" name="alertMinutes" value="30" style="margin-right:5px">30분 후</label>
+  <div class="alert-time-group" role="group" aria-label="알림 시간 선택">
+    <label class="floor-tab"><input type="radio" name="alertMinutes" value="10">10분 후</label>
+    <label class="floor-tab"><input type="radio" name="alertMinutes" value="20" checked>20분 후</label>
+    <label class="floor-tab"><input type="radio" name="alertMinutes" value="30">30분 후</label>
   </div>
   <button type="button" class="primary full" style="margin-top:14px" id="scheduleAlertBtn">선택한 시간에 알림 받기</button>
   <button type="button" class="small-btn" id="cancelScheduledAlertBtn" hidden>예약 취소</button>
