@@ -5,19 +5,53 @@ const STORE_DATA = [
 ];
 
 const PARKING = {
-  wolgye: {
-    overall: { rate: 94, total: 1274, available: 76, normal: 59, disabled: 13, ev: 4 },
-    floors: {
-      "3층": { rate: 94, total: 430, available: 24, normal: 21, disabled: 3, ev: null },
-      "4층": { rate: 95, total: 420, available: 22, normal: 16, disabled: 2, ev: 4 },
-      "5층": { rate: 93, total: 424, available: 30, normal: 22, disabled: 8, ev: null }
-    },
-    prediction: [
-      { m: 10, rate: 96, waitMin: 8, waitMax: 12 },
-      { m: 20, rate: 98, waitMin: 12, waitMax: 18 },
-      { m: 30, rate: 100, waitMin: 18, waitMax: 25 }
-    ]
+
+wolgye: {
+  overall: {
+    rate: 84,
+    total: 1274,
+    available: 206,
+    normal: 189,
+    disabled: 13,
+    ev: 4
   },
+
+  floors: {
+    "3층": {
+      rate: 94,
+      total: 430,
+      available: 24,
+      normal: 21,
+      disabled: 3,
+      ev: null
+    },
+
+    "4층": {
+      rate: 95,
+      total: 420,
+      available: 22,
+      normal: 16,
+      disabled: 2,
+      ev: 4
+    },
+
+    "5층": {
+      rate: 62,
+      total: 424,
+      available: 160,
+      normal: 152,
+      disabled: 8,
+      ev: null
+    }
+  },
+
+  prediction: [
+    { m: 10, rate: 86, waitMin: 2, waitMax: 5 },
+    { m: 20, rate: 89, waitMin: 4, waitMax: 7 },
+    { m: 30, rate: 92, waitMin: 6, waitMax: 10 }
+  ]
+},
+
   hanam: {
     // 전체 6,200면 및 층 구성은 사용자 제공 정보, 점유율과 층별 배정은 시연용입니다.
     // 전기차 94면은 충전구역 총 규모이며 잔여 면수가 아닙니다.
@@ -101,7 +135,54 @@ function level(rate) {
   if (rate >= 70) return { name: "혼잡", cls: "level-yellow" };
   return { name: "여유", cls: "level-green" };
 }
+function getSignalColor(rate){
+  if(rate >= 100) return "red";
+  if(rate >= 70) return "yellow";
+  return "green";
+}
 
+function renderOverallTraffic(rate){
+  const wrap = document.querySelector("#overallTrafficLight");
+  const text = document.querySelector("#overallTrafficText");
+  if(!wrap || !text) return;
+
+  const green = wrap.querySelector(".green");
+  const yellow = wrap.querySelector(".yellow");
+  const red = wrap.querySelector(".red");
+
+  green.className = "light green";
+  yellow.className = "light yellow";
+  red.className = "light red";
+  text.className = "traffic-label";
+
+  const l = level(rate);
+  const color = getSignalColor(rate);
+
+  if(color === "green"){
+    green.classList.add("on", "green");
+    text.classList.add("green");
+  }else if(color === "yellow"){
+    yellow.classList.add("on", "yellow");
+    text.classList.add("yellow");
+  }else{
+    red.classList.add("on", "red");
+    text.classList.add("red");
+  }
+
+  text.textContent = l.name;
+}
+
+function miniSignalHTML(rate){
+  const l = level(rate);
+  const color = getSignalColor(rate);
+
+  return `
+    <div class="mini-signal ${color}" aria-label="${l.name}">
+      <span class="mini-light"></span>
+      <span>${l.name}</span>
+    </div>
+  `;
+}
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, ch => ({
     "&": "&amp;",
@@ -292,9 +373,7 @@ function renderParking() {
   else if (o.rate >= 70) availableEl.style.color = "#E5A000";
   else availableEl.style.color = "#016922";
 
-  const pill = document.querySelector("#overallLevel");
-  pill.className = `siren-pill ${l.cls}`;
-  pill.innerHTML = `<span class="siren-dot"></span>${l.name}`;
+  renderOverallTraffic(o.rate);
 
   const progress = document.querySelector("#overallProgress");
   progress.style.width = Math.min(o.rate, 100) + "%";
@@ -323,7 +402,7 @@ function renderParking() {
               <h3>${label}</h3>
               <p>점유율 ${f.rate}% · 잔여 ${f.available}면${weekendNote}</p>
             </div>
-            <div class="siren-pill ${fl.cls}"><span class="siren-dot"></span>${fl.name}</div>
+            ${miniSignalHTML(f.rate)}
           </div>
           <div class="type-row" style="margin-top:14px">
             <div class="type-box"><span>일반주차구역</span><strong>${f.normal}면</strong></div>
@@ -357,7 +436,14 @@ function renderParking() {
       </div>`;
   }).join("");
 
-  document.querySelector("#alertBaseText").textContent = `현재 기준 ${l.name} ${o.rate}% · 2시간 유지`;
+
+const alertBaseText = document.querySelector("#alertBaseText");
+
+if (alertBaseText) {
+  alertBaseText.textContent =
+    `현재 기준 ${l.name} ${o.rate}% · 2시간 유지`;
+}
+
 }
 
 function initVoice() {
