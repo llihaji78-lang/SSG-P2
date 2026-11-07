@@ -42,7 +42,14 @@
 <section class="section card status-hero">
   <div class="status-top">
     <div><div class="status-label">현재 전체 주차 현황</div><div class="status-count"><strong id="overallAvailable">--면</strong><span class="count-denominator"> / <span id="overallTotal">--면</span></span></div><div class="status-rate-secondary">점유율 <strong id="overallRate">--%</strong></div></div>
-    <div class="siren-pill level-green" id="overallLevel"><span class="siren-dot"></span>여유</div>
+    <div class="overall-signal-wrap" id="overallSignalWrap">
+  <div class="traffic-light horizontal" id="overallTrafficLight" aria-label="전체 혼잡도 신호등">
+    <span class="light green"></span>
+    <span class="light yellow"></span>
+    <span class="light red"></span>
+  </div>
+  <div class="traffic-label" id="overallTrafficText">여유</div>
+</div>
   </div>
   <div class="progress"><span id="overallProgress"></span></div>
   <div class="type-row">
