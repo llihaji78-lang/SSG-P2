@@ -67,8 +67,8 @@ const VEHICLE_MAPS = {
       { key: "B1", label: "지하 1층", image: "assets/images/floor3_cropped.png", note: "하남점 지하 1층 · 시뮬레이션 배치도" },
       { key: "B2", label: "지하 2층", image: "assets/images/floor3_cropped.png", note: "하남점 지하 2층 · 시뮬레이션 배치도" },
       { key: "B3", label: "지하 3층", image: "assets/images/floor3_cropped.png", note: "하남점 지하 3층 · 시뮬레이션 배치도" },
-      { key: "3층", label: "지상 3층(주말 운영)", image: "assets/images/floor3_cropped.png", note: "하남점 지상 3층 · 시뮬레이션 배치도" },
-      { key: "4층", label: "지상 4층(주말 운영)", image: "assets/images/floor3_cropped.png", note: "하남점 지상 4층 · 시뮬레이션 배치도" },
+      { key: "3층", label: "3층(주말 운영)", image: "assets/images/floor3_cropped.png", note: "하남점 3층 · 시뮬레이션 배치도" },
+      { key: "4층", label: "4층(주말 운영)", image: "assets/images/floor3_cropped.png", note: "하남점 4층 · 시뮬레이션 배치도" },
       { key: "야외", label: "야외주차장", image: "assets/images/floor3_cropped.png", note: "하남점 야외주차장 · 시뮬레이션 배치도" }
     ],
     pin: { floor: "B2", x: 0.52, y: 0.49 },
@@ -78,7 +78,7 @@ const VEHICLE_MAPS = {
     floors: [
       { key: "B2", label: "지하 2층", image: "assets/images/ilsan_b2.png", note: "일산점 지하 2층 주차장 도면" },
       { key: "B3", label: "지하 3층", image: "assets/images/ilsan_b2.png", note: "일산점 지하 3층 · 지하 2층 도면 기반 시뮬레이션" },
-      { key: "옥상", label: "3층(옥상주차장)", image: "assets/images/ilsan_b2.png", note: "일산점 옥상주차장 · 지하 2층 도면 기반 시뮬레이션" }
+      { key: "옥상", label: "3층(옥상)", image: "assets/images/ilsan_b2.png", note: "일산점 옥상 · 지하 2층 도면 기반 시뮬레이션" }
     ],
     pin: { floor: "B2", x: 0.58, y: 0.63 },
     spotName: "지하 2층 · 지정 주차면 (시뮬레이션)"
@@ -114,9 +114,9 @@ function escapeHtml(value) {
 
 function displayFloorLabel(store, floorName) {
   if (store === "wolgye" && floorName === "5층") return "5층(옥상)";
-  if (store === "hanam" && (floorName === "3층" || floorName === "4층")) return `지상 ${floorName} · 주말 운영`;
+  if (store === "hanam" && (floorName === "3층" || floorName === "4층")) return ` ${floorName} · 주말 운영`;
   if (store === "hanam" && floorName === "야외") return "야외주차장";
-  if (store === "ilsan" && floorName === "옥상") return "3층(옥상주차장)";
+  if (store === "ilsan" && floorName === "옥상") return "3층(옥상)";
   return floorName;
 }
 
@@ -313,7 +313,7 @@ function renderParking() {
   Object.entries(p.floors).forEach(([name, f], i) => {
     const fl = level(f.rate);
     const label = displayFloorLabel(storeId, name);
-    const weekendNote = storeId === "hanam" && (name === "3층" || name === "4층") ? " · 주말 운영 시뮬레이션" : "";
+    const weekendNote = storeId === "hanam" && (name === "3층" || name === "4층") ? " · 주말 운영" : "";
     tabs.insertAdjacentHTML("beforeend", `<button class="floor-tab ${i === 0 ? "active" : ""}" data-floor="${name}">${label}</button>`);
     panels.insertAdjacentHTML("beforeend", `
       <div class="floor-panel ${i === 0 ? "active" : ""}" data-floor-panel="${name}">
@@ -705,3 +705,5 @@ if (!document.querySelector('script[src$="scheduled-alert.js"]')) {
   script.src = "assets/js/scheduled-alert.js";
   document.body.appendChild(script);
 }
+
+(function(){const s=document.createElement('script');s.src='assets/js/detail-header.js?v=20261107-1';document.body.appendChild(s)})();
