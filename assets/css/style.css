@@ -1,4 +1,3 @@
-
 :root{
   --green:#016922;
   --green-2:#0a7f31;
@@ -403,7 +402,6 @@ body[data-page="parking"] .type-box > strong {
   }
 }
 
-
 /* 네 가지 주요 페이지의 상단 디자인 통일 */
 
 body[data-page="parking"] .header-inner,
@@ -552,3 +550,92 @@ body[data-page="vehicle"] .store-icon {
   background:#e3483f;
   box-shadow:0 0 10px rgba(227,72,63,.65);
 }
+/* ===== 도착 시점 선택 버튼 중앙 정렬: 기존 알림 기능은 그대로 ===== */
+body[data-page="parking"] .alert-time-group {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  width:100%;
+  margin-top:12px;
+}
+body[data-page="parking"] .alert-time-group .floor-tab {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 1 auto;
+  width:auto;
+  min-width:0;
+  max-width:100%;
+  gap:6px;
+  padding:11px 12px;
+  margin:0;
+  font-size:12px;
+  white-space:nowrap;
+  text-align:center;
+}
+body[data-page="parking"] .alert-time-group input[type="radio"] {
+  margin:0;
+  flex:0 0 auto;
+}
+@media (max-width:490px) {
+  body[data-page="parking"] .alert-time-group { gap:7px; }
+  body[data-page="parking"] .alert-time-group .floor-tab {
+    font-size:11px;
+    padding:10px 10px;
+  }
+}
+
+/* ===== 실제 ssgp-home.html의 클래스명에 맞춘 중앙정렬 ===== */
+body[data-page="home"] .hero {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+body[data-page="home"] .hero .eyebrow,
+body[data-page="home"] .hero h1,
+body[data-page="home"] .hero p {
+  width:100%;
+  text-align:center;
+}
+body[data-page="home"] .hero h1 { margin-left:auto; margin-right:auto; }
+body[data-page="home"] .hero p { max-width:640px; margin-left:auto; margin-right:auto; }
+
+/* 모바일 2x2 카드 유지, 아이콘과 내용만 가운데 정렬 */
+body[data-page="home"] .home-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+body[data-page="home"] .home-card {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:22px 14px;
+}
+body[data-page="home"] .home-card > div {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  text-align:center;
+}
+body[data-page="home"] .home-card .icon-box {
+  margin-left:auto;
+  margin-right:auto;
+}
+body[data-page="home"] .home-card h2,
+body[data-page="home"] .home-card p {
+  text-align:center;
+}
+@media (max-width:430px) {
+  body[data-page="home"] .home-grid { gap:10px; }
+  body[data-page="home"] .home-card { padding:18px 9px; }
+}
+
