@@ -639,3 +639,28 @@ body[data-page="home"] .home-card p {
   body[data-page="home"] .home-card { padding:18px 9px; }
 }
 
+
+/* 모바일 알림 시간 선택칸 - 세로 배치 및 중앙 정렬 */
+@media (max-width: 640px) {
+  body[data-page="parking"] .alert-time-group {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 340px !important;
+    margin: 16px auto 0 !important;
+    gap: 10px !important;
+  }
+
+  body[data-page="parking"] .alert-time-group .floor-tab {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 46px;
+    margin: 0 !important;
+    text-align: center !important;
+  }
+}
