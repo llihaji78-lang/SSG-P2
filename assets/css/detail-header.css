@@ -1,0 +1,65 @@
+/* SSG-P home and detail header v2: logo row / nav row / store row */
+body[data-page="home"] .ssgp-detail-header,
+body[data-page="parking"] .ssgp-detail-header,
+body[data-page="nearby"] .ssgp-detail-header,
+body[data-page="voice"] .ssgp-detail-header,
+body[data-page="vehicle"] .ssgp-detail-header {
+  background:rgba(255,255,255,.98);
+}
+.ssgp-detail-header .logo-row {
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  height:64px !important;
+  padding:8px 18px !important;
+  border-bottom:1px solid #f0f0ee;
+}
+.ssgp-detail-header .logo-row a {display:inline-flex;align-items:center;justify-content:center;}
+.ssgp-detail-header .logo-row .logo-img {max-height:38px;max-width:150px;object-fit:contain;}
+.ssgp-detail-top {
+  position:relative; box-sizing:border-box;min-height:72px;
+  padding:12px 18px;display:flex;align-items:center;justify-content:space-between;
+}
+.ssgp-detail-actions {display:flex;align-items:center;gap:9px;z-index:1;}
+.ssgp-detail-action {
+  width:42px;height:42px;flex-shrink:0;display:inline-flex;align-items:center;
+  justify-content:center;box-sizing:border-box;border:1px solid #e4e6e3;border-radius:13px;
+  background:#fff;color:#231916;padding:0;text-decoration:none;cursor:pointer;
+}
+.ssgp-detail-action svg {display:block;}
+.ssgp-detail-top > .page-title {
+  position:absolute !important;top:50% !important;left:50% !important;
+  transform:translate(-50%,-50%) !important;margin:0 !important;padding:0 !important;
+  max-width:calc(100% - 190px);color:#231916;font-size:23px !important;
+  font-weight:900 !important;text-align:center !important;letter-spacing:-.7px;
+  line-height:1.2 !important;white-space:nowrap;pointer-events:none;
+}
+.ssgp-detail-top > .bell-btn {z-index:1;flex:0 0 auto;margin-left:auto;}
+.ssgp-detail-top > .bell-btn svg {width:22px;height:22px;}
+.ssgp-detail-store-row {
+  display:flex;align-items:center;min-height:56px;padding:10px 18px 15px;
+  border-top:1px solid #f0f0ee;box-sizing:border-box;
+}
+.ssgp-detail-store-row > .store-trigger {
+  display:inline-flex;align-items:center;justify-content:flex-start;gap:8px;width:auto;
+  max-width:100%;margin:0;padding:6px 0;border:0;background:transparent;
+  font-size:15px;font-weight:800;color:#231916;
+}
+.ssgp-detail-store-row .store-icon,
+.ssgp-detail-store-row .store-icon-svg {display:inline-flex;align-items:center;justify-content:center;}
+@media(max-width:430px) {
+  .ssgp-detail-header .logo-row {height:56px !important;}
+  .ssgp-detail-top {min-height:64px;padding:10px 13px;}
+  .ssgp-detail-actions {gap:6px;}
+  .ssgp-detail-action {width:36px;height:36px;border-radius:11px;}
+  .ssgp-detail-action svg {width:20px;height:20px;}
+  .ssgp-detail-top > .bell-btn {width:36px;height:36px;}
+  .ssgp-detail-top > .page-title {font-size:19px !important;max-width:calc(100% - 158px);}
+  .ssgp-detail-store-row {padding:8px 14px 12px;min-height:52px;}
+  .ssgp-detail-store-row > .store-trigger {font-size:14px;}
+}
+@media(max-width:350px) {
+  .ssgp-detail-top > .page-title {font-size:17px !important;max-width:calc(100% - 154px);}
+  .ssgp-detail-actions {gap:4px;}
+  .ssgp-detail-action {width:34px;height:34px;}
+}
