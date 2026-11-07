@@ -105,7 +105,8 @@ const VEHICLE_MAPS = {
       { key: "4층", label: "4층(주말 운영)", image: "assets/images/floor3_cropped.png", note: "하남점 4층 · 시뮬레이션 배치도" },
       { key: "야외", label: "야외주차장", image: "assets/images/floor3_cropped.png", note: "하남점 야외주차장 · 시뮬레이션 배치도" }
     ],
-    pin: { floor: "B2", x: 0.52, y: 0.49 },
+
+    pin: { floor: "B2", x: 0.585, y: 0.52 },
     spotName: "지하 2층 · 지정 주차면 (시뮬레이션)"
   },
   ilsan: {
