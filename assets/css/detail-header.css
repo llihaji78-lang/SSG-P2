@@ -156,3 +156,37 @@ body[data-page="parking"] .status-hero .count-denominator {white-space:nowrap;}
   body[data-page="parking"] .status-hero .status-count > strong {font-size:30px !important;}
   .ssgp-detail-header .ssgp-home-logo-title .logo-img {max-width:78px;max-height:31px;}
 }
+
+/* ===== v4: notifications page - centered title, back arrow only ===== */
+body[data-page="notifications"] .ssgp-detail-header .ssgp-detail-top {
+  min-height:72px;
+}
+body[data-page="notifications"] .ssgp-detail-header .ssgp-detail-top > .page-title {
+  max-width:calc(100% - 110px);
+}
+body[data-page="notifications"] .ssgp-detail-header .logo-row,
+body[data-page="notifications"] .ssgp-detail-header .ssgp-detail-store-row,
+body[data-page="notifications"] main > .back-link,
+body[data-page="nearby"] main > #ssgpNearbyBack {
+  display:none !important;
+}
+@media (max-width:430px) {
+  body[data-page="notifications"] .ssgp-detail-header .ssgp-detail-top {min-height:64px;}
+}
+
+/* ===== v5: notifications page, centered '알림함' and top-right close X ===== */
+body[data-page="notifications"] .ssgp-detail-header .ssgp-detail-top {
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+}
+body[data-page="notifications"] .ssgp-detail-header .ssgp-detail-top > .page-title {
+  left:50% !important;
+  max-width:calc(100% - 112px) !important;
+  text-align:center !important;
+}
+body[data-page="notifications"] .ssgp-notification-close {
+  position:relative;
+  z-index:2;
+  margin-left:auto;
+}
