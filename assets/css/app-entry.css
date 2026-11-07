@@ -1,0 +1,44 @@
+:root {color-scheme:light;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#ededed;font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR','Malgun Gothic',Arial,sans-serif;color:#1d1d1d}
+button,a{-webkit-tap-highlight-color:transparent}
+.app-frame{position:relative;width:min(100%,430px);margin:0 auto;min-height:100vh;background:#fff;box-shadow:0 0 0 1px #0000000d;overflow:hidden}
+.app-screen{position:relative;width:100%;font-size:0;line-height:0}
+.app-screen>.app-screenshot{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
+.brand-hotspot{position:absolute;z-index:5;border:0;background:transparent;cursor:pointer;padding:0}
+.brand-hotspot:focus-visible{outline:3px solid #016922;border-radius:7px}
+/* The hotspots are percentages of the original screenshot's geometry */
+.brand-hotspot.emart{left:53.9%;top:1.1%;width:8.8%;height:5.4%}
+.brand-hotspot.traders{left:59.2%;top:.65%;width:7%;height:5.1%}
+.brand-menu{position:absolute;z-index:20;top:6.3%;left:50%;transform:translateX(-50%);width:48%;max-width:290px;border:1.5px solid #242424;border-radius:10px;background:#fff;padding:9px 13px;box-shadow:0 7px 22px #00000029;font-size:16px;line-height:1.4}
+.brand-menu[hidden]{display:none!important}
+.brand-choice{display:flex;align-items:center;justify-content:center;width:100%;min-height:49px;text-decoration:none;background:#fff;border:0;color:#1b1b1b;font-size:19px;font-weight:900;cursor:pointer}
+.brand-choice+.brand-choice{border-top:1px solid #eee}
+.brand-choice.disabled{cursor:default;pointer-events:none}
+.brand-choice img{display:block;max-height:38px;max-width:100%;object-fit:contain}
+.emart-logo-word{font-size:25px;font-weight:900;letter-spacing:-1.1px}.emart-logo-word .e{color:#f8b718}.emart-logo-word .mart{color:#1d1d1d}
+/* The logo is placed between the bell and TRADERS brand mark. */
+.ssgp-entry-logo{position:absolute;z-index:6;top:.8%;left:14.2%;width:10.4%;aspect-ratio:1;display:block;border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 0 0 2px #01692250;animation:logo-blink 1.45s ease-in-out infinite}
+.ssgp-entry-logo img{display:block;width:100%;height:100%;object-fit:contain}
+.ssgp-entry-logo:focus-visible{outline:3px solid #1baf58;outline-offset:4px}
+@keyframes logo-blink{0%,100%{opacity:1;box-shadow:0 0 0 2px #01692260,0 0 12px #01692230}50%{opacity:.42;box-shadow:0 0 0 5px #04a54e70,0 0 23px #04a54e94}}
+@media (prefers-reduced-motion:reduce){.ssgp-entry-logo{animation:none}}
+/* The carousel overlays exactly the existing banner rectangle within the screenshot.
+   Native screenshot size: 941 x 1561; original banner y=297..773. */
+.traders-carousel{position:absolute;z-index:4;top:19.026%;left:0;width:100%;height:30.493%;overflow:hidden;background:#f6d9d8;font-size:14px;line-height:normal}
+.carousel-track{display:flex;width:200%;height:100%;transform:translateX(0);transition:transform .38s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.traders-carousel[data-slide="1"] .carousel-track{transform:translateX(-50%)}
+.carousel-slide{position:relative;flex:0 0 50%;width:50%;height:100%;overflow:hidden;display:block}
+.carousel-slide>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.carousel-slide.promo{cursor:pointer}
+.carousel-slide.promo:focus-visible{outline:4px solid #f2c42a;outline-offset:-4px}
+.carousel-arrow{position:absolute;z-index:5;top:50%;transform:translateY(-50%);width:35px;height:43px;border:0;border-radius:22px;background:rgba(15,15,15,.64);color:#fff;font-size:26px;display:grid;place-items:center;cursor:pointer;box-shadow:0 3px 10px #0002}
+.carousel-arrow.right{right:10px}.carousel-arrow.left{left:10px;display:none}
+.traders-carousel[data-slide="1"] .carousel-arrow.left{display:grid}
+.traders-carousel[data-slide="1"] .carousel-arrow.right{display:none}
+.carousel-arrow:focus-visible{outline:3px solid #ffcd24;outline-offset:3px}
+.carousel-counter{position:absolute;z-index:5;bottom:8px;right:10px;padding:4px 10px;border-radius:30px;background:rgba(21,18,18,.72);color:white;font-size:11px;line-height:1.5;letter-spacing:.7px}
+.carousel-slide.original::after{content:"";position:absolute;right:0;bottom:0;width:28%;height:13%;background:linear-gradient(110deg,rgba(193,41,53,0),rgba(168,37,55,.62));pointer-events:none}
+.project-disclaimer{margin:0 auto;max-width:430px;padding:12px 15px 22px;font-size:11px;line-height:1.5;color:#7b7b7b;text-align:center;background:#fff}
+@media(max-width:375px){.brand-menu{width:52%;padding:6px 10px}.brand-choice{min-height:43px;font-size:16px}.carousel-arrow{width:30px;height:38px;font-size:22px}}
