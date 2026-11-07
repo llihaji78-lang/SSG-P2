@@ -457,3 +457,98 @@ body[data-page="vehicle"] .store-icon {
   height: 22px;
   color: #016922;
 }
+/* ===== 전체 혼잡도 가로 신호등 ===== */
+.overall-signal-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  min-width:170px;
+}
+
+.traffic-light.horizontal{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 18px;
+  background:#1e2b20;
+  border-radius:999px;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.08), 0 6px 18px rgba(0,0,0,.08);
+}
+
+.traffic-light .light{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#5e5e5e;
+  opacity:.22;
+  box-shadow:inset 0 3px 8px rgba(0,0,0,.35);
+}
+
+.traffic-light .light.on.green{
+  background:#19b25d;
+  opacity:1;
+  box-shadow:0 0 14px rgba(25,178,93,.75);
+}
+
+.traffic-light .light.on.yellow{
+  background:#f0b323;
+  opacity:1;
+  box-shadow:0 0 14px rgba(240,179,35,.75);
+}
+
+.traffic-light .light.on.red{
+  background:#e3483f;
+  opacity:1;
+  box-shadow:0 0 14px rgba(227,72,63,.75);
+}
+
+.traffic-label{
+  font-size:16px;
+  font-weight:800;
+  line-height:1;
+}
+
+.traffic-label.green{color:#0c8a46;}
+.traffic-label.yellow{color:#c28a00;}
+.traffic-label.red{color:#d23d35;}
+
+/* ===== 층별용 단색 신호등 ===== */
+.mini-signal{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:#f5f6f3;
+  font-size:14px;
+  font-weight:800;
+  line-height:1;
+  white-space:nowrap;
+}
+
+.mini-signal .mini-light{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  display:block;
+  box-shadow:0 0 8px rgba(0,0,0,.12);
+}
+
+.mini-signal.green{color:#0c8a46;}
+.mini-signal.green .mini-light{
+  background:#19b25d;
+  box-shadow:0 0 10px rgba(25,178,93,.65);
+}
+
+.mini-signal.yellow{color:#c28a00;}
+.mini-signal.yellow .mini-light{
+  background:#f0b323;
+  box-shadow:0 0 10px rgba(240,179,35,.65);
+}
+
+.mini-signal.red{color:#d23d35;}
+.mini-signal.red .mini-light{
+  background:#e3483f;
+  box-shadow:0 0 10px rgba(227,72,63,.65);
+}
