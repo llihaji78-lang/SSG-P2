@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>트레이더스 · SSG-P 시연</title>
+  <link rel="stylesheet" href="assets/css/app-entry.css">
+</head>
+<body>
+  <main class="app-frame">
+    <div class="app-screen">
+      <img class="app-screenshot" src="assets/images/traders_main.png" alt="트레이더스 앱 메인화면 시연 이미지">
+      <button id="brandToggle" class="brand-hotspot traders" type="button" aria-expanded="false" aria-controls="brandMenu" aria-label="트레이더스 브랜드 선택 열기"></button>
+      <div id="brandMenu" class="brand-menu" hidden>
+        <a class="brand-choice" href="emart.html" aria-label="이마트 선택">
+          <span class="emart-logo-word"><span class="e">e</span><span class="mart">mart</span></span>
+        </a>
+        <div class="brand-choice disabled"><img src="assets/images/starfield_market_logo.png" alt="스타필드마켓"></div>
+      </div>
+      <a class="ssgp-entry-logo" href="ssgp-home.html" aria-label="깜빡이는 SSG-P 로고, 주차 서비스 열기">
+        <img src="assets/images/ssgp_logo.png" alt="SSG-P 로고">
+      </a>
+      <section id="tradersCarousel" class="traders-carousel" data-slide="0" aria-label="트레이더스 메인 배너 슬라이드">
+        <div class="carousel-track">
+          <div class="carousel-slide original"><img src="assets/images/traders_original_banner.png" alt="트레이더스 쓱데이 배너"></div>
+          <a class="carousel-slide promo" href="ssgp-home.html" aria-label="SSG-P 스마트 주차 서비스로 이동"><img src="assets/images/ssgp_promo_banner.png" alt="SSG-P 스마트 주차 홍보 배너"></a>
+        </div>
+        <button class="carousel-arrow left" type="button" data-prev aria-label="이전 배너">‹</button>
+        <button class="carousel-arrow right" type="button" data-next aria-label="다음 배너, SSG-P">›</button>
+        <span class="carousel-counter" aria-live="polite">1 / 2</span>
+      </section>
+    </div>
+    <p class="project-disclaimer">SSG-P 팀 프로젝트용 앱 화면 시연이며 실제 트레이더스 앱과 연결되지 않습니다.</p>
+  </main>
+  <script src="assets/js/app-entry.js"></script>
+</body>
+</html>
