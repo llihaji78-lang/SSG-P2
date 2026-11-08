@@ -1,5 +1,7 @@
 <!doctype html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<link rel="stylesheet" href="assets/css/style.css"><title>음성 서비스 | SSG-P</title></head><body data-page="voice" class=""><div class="app">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/retail-polish.css?v=2">
+<title>음성 서비스 | SSG-P</title></head><body data-page="voice" class=""><div class="app">
 <header class="header">
   <div class="logo-row">
     <a href="index.html">
@@ -41,7 +43,15 @@
 <main>
 <section class="voice-wrap">
   <span class="voice-subtitle">음성 주차 안내</span><h2>무엇을 도와드릴까요?</h2><p>궁금한 주차 정보를 음성으로 물어보세요.</p>
-  <button class="mic" id="micBtn" aria-label="음성 질문 시작"><span data-icon="mic"></span></button><p id="micStatus">버튼을 누르고 말씀해 주세요.</p>
+  <button class="mic" id="micBtn" aria-label="음성 질문 시작"><span class="voice-main-mic">
+  <svg viewBox="0 0 24 24" width="42" height="42"
+       fill="none" stroke="#ffffff" stroke-width="1.8"
+       stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <rect x="8" y="3" width="8" height="12" rx="4"/>
+    <path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/>
+  </svg>
+</span></button><p id="micStatus">버튼을 누르고 말씀해 주세요.</p>
   <div class="guide"><h3>이렇게 질문해 보세요</h3>
     <div class="guide-row"><b>전체 현황</b><p>“지금 주차장 혼잡해?”</p></div>
     <div class="guide-row"><b>층별 현황</b><p>“4층에 빈자리 있어?”</p></div>
