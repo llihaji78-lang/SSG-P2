@@ -507,9 +507,33 @@ function answerQuestion(q) {
 
 function speak(text) {
   if (!("speechSynthesis" in window)) return;
+
   speechSynthesis.cancel();
+
   const u = new SpeechSynthesisUtterance(text);
   u.lang = "ko-KR";
+
+  // 밝고 친절한 안내 목소리
+  u.rate = 1.05;     // 말하는 속도
+  u.pitch = 1.15;    // 목소리 높낮이
+  u.volume = 1.0;    // 음량
+
+  // 사용 가능한 한국어 여성 음성을 우선 선택
+  const voices = speechSynthesis.getVoices();
+  const koreanVoices = voices.filter(v =>
+    v.lang.toLowerCase().startsWith("ko")
+  );
+
+  const preferredVoice = koreanVoices.find(v =>
+    /sunhi|heami|yuna|female|여성/i.test(v.name)
+  );
+
+  if (preferredVoice) {
+    u.voice = preferredVoice;
+  } else if (koreanVoices.length > 0) {
+    u.voice = koreanVoices[0];
+  }
+
   speechSynthesis.speak(u);
 }
 
