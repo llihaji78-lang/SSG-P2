@@ -74,11 +74,7 @@ body[data-page="vehicle"] #vehicleLocator .map-disclaimer {
 /* 휴대폰 화면에서만 내 차량 찾기 여백 조정 */
 @media (max-width: 600px) {
 
-  /* 내 차량 찾기 페이지의 좌우 여백 */
-  body[data-page="vehicle"] .section {
-    margin-left: 8px !important;
-    margin-right: 8px !important;
-  }
+ 
 
   /* 점포 선택 상단과 첫 번째 콘텐츠 사이 여백 */
   body[data-page="vehicle"] main {
