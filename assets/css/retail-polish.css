@@ -340,3 +340,328 @@ body[data-page="voice"] .voice-main-mic svg {
   height: 42px;
   flex-shrink: 0;
 }
+
+/* 주차현황 - 전체 현황 제목을 카드 밖에 표시 */
+body[data-page="parking"] .parking-outside-title {
+  margin: 24px 16px 12px;
+  font-size: 21px;
+  font-weight: 750;
+  color: #252525;
+  line-height: 1.4;
+}
+
+/* 혼잡도 예상 - 바깥 카드 테두리만 제거 */
+body[data-page="parking"] .prediction-borderless {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* 혼잡도 예상 카드의 좌우 여백 정리 */
+body[data-page="parking"] .prediction-borderless.card-pad {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* ===== 주차현황 디자인 정리 ===== */
+
+/* 1. 현재 전체 현황 제목과 혼잡도 예상 제목 통일 */
+body[data-page="parking"] .parking-outside-title,
+body[data-page="parking"] .prediction-borderless .section-head h2 {
+  font-size: 21px !important;
+  font-weight: 750 !important;
+  line-height: 1.4 !important;
+  letter-spacing: -0.5px !important;
+  color: #252525 !important;
+}
+
+/* 혼잡도 예상 제목과 설명의 왼쪽 위치 맞추기 */
+body[data-page="parking"] .prediction-borderless .section-head {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+/* 혼잡도 예상 설명 */
+body[data-page="parking"] .prediction-borderless .section-head p {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: #777 !important;
+  margin-top: 6px !important;
+  line-height: 1.6 !important;
+}
+
+/* 2. 주변 주차장 확인하기 버튼 */
+body[data-page="parking"] .ssgp-nearby-link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  min-height: 54px !important;
+  margin: 12px auto 0 !important;
+  padding: 13px 20px !important;
+
+  background: #fff !important;
+  color: #252525 !important;
+  border: 1px solid #dfe7db !important;
+  border-radius: 18px !important;
+  box-shadow: none !important;
+
+  font-size: 14px !important;
+  font-weight: 750 !important;
+  text-decoration: none !important;
+  line-height: 1.4 !important;
+}
+
+/* 주변 주차장 아이콘 */
+body[data-page="parking"] .ssgp-nearby-link::before {
+  content: "Ⓟ";
+  color: #016922;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* 3. 혼잡도 변화 알림 켜기 버튼 */
+body[data-page="parking"] #scheduleAlertBtn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+
+  width: fit-content !important;
+  max-width: 100% !important;
+  min-height: 54px !important;
+  margin: 14px auto 0 !important;
+  padding: 13px 20px !important;
+
+  background: #fff !important;
+  color: #252525 !important;
+  border: 1px solid #dfe7db !important;
+  border-radius: 18px !important;
+  box-shadow: none !important;
+
+  font-size: 14px !important;
+  font-weight: 750 !important;
+  line-height: 1.4 !important;
+}
+
+/* 알림 버튼 앞쪽 아이콘 */
+body[data-page="parking"] #scheduleAlertBtn::before {
+  content: "♧";
+  color: #016922;
+  font-size: 19px;
+}
+
+/* 버튼 터치 영역은 유지 */
+body[data-page="parking"] .ssgp-nearby-link:focus-visible,
+body[data-page="parking"] #scheduleAlertBtn:focus-visible {
+  outline: 3px solid #9acbab !important;
+  outline-offset: 3px !important;
+}
+
+/* 모바일에서 버튼이 화면을 넘지 않도록 */
+@media (max-width: 480px) {
+  body[data-page="parking"] .ssgp-nearby-link,
+  body[data-page="parking"] #scheduleAlertBtn {
+    font-size: 13px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+}
+
+/* 만차·만차임박 시 강조 효과는 유지하되
+   새 버튼 디자인에 맞게 테두리를 점멸 */
+body[data-page="parking"] .ssgp-nearby-callout.is-full .ssgp-nearby-link,
+body[data-page="parking"] .ssgp-nearby-callout.is-imminent .ssgp-nearby-link {
+  animation: ssgpOutlinePulse 1.2s ease-in-out infinite !important;
+}
+
+@keyframes ssgpOutlinePulse {
+  0%, 100% {
+    border-color: #dfe7db;
+    box-shadow: 0 0 0 0 rgba(1,105,34,0);
+  }
+  50% {
+    border-color: #016922;
+    box-shadow: 0 0 0 4px rgba(1,105,34,.13);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-page="parking"] .ssgp-nearby-callout.is-full .ssgp-nearby-link,
+  body[data-page="parking"] .ssgp-nearby-callout.is-imminent .ssgp-nearby-link {
+    animation: none !important;
+    border-color: #016922 !important;
+  }
+}
+
+/* 혼잡도 변화 알림 버튼 - 기존 크기 유지 */
+body[data-page="parking"] #scheduleAlertBtn {
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  padding: 13px 20px !important;
+
+  background: #ffffff !important;
+  color: #252525 !important;
+  border: 1px solid #dfe7db !important;
+  border-radius: 18px !important;
+  box-shadow: none !important;
+}
+
+/* 잘못 들어간 클로버 아이콘 제거 */
+body[data-page="parking"] #scheduleAlertBtn::before {
+  content: none !important;
+}
+
+/* 실제 종 아이콘 */
+body[data-page="parking"] #scheduleAlertBtn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 9px !important;
+}
+
+body[data-page="parking"] #scheduleAlertBtn .alert-button-icon {
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+  color: #016922;
+}
+
+/* ===== 주차현황 버튼 최종 수정 ===== */
+
+/* 주변 주차장 버튼: 가로 너비 복원 */
+body[data-page="parking"] .ssgp-nearby-link {
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 9px !important;
+
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 56px !important;
+  margin: 12px 0 0 !important;
+  padding: 14px 16px !important;
+
+  background: #ffffff !important;
+  color: #252525 !important;
+  border: 1px solid #dfe7db !important;
+  border-radius: 18px !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+}
+
+/* 혼잡도 알림 버튼: 가로 너비 복원 */
+body[data-page="parking"] #scheduleAlertBtn {
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 9px !important;
+
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 56px !important;
+  margin: 14px 0 0 !important;
+  padding: 14px 16px !important;
+
+  background: #ffffff !important;
+  color: #252525 !important;
+  border: 1px solid #dfe7db !important;
+  border-radius: 18px !important;
+  box-shadow: none !important;
+  font-weight: 700 !important;
+}
+
+/* 이전에 넣었던 클로버 기호 제거 후
+   CSS로 종 아이콘 표시 */
+body[data-page="parking"] #scheduleAlertBtn::before {
+  content: "" !important;
+  display: block !important;
+  width: 21px !important;
+  height: 21px !important;
+  flex: 0 0 21px !important;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23016922' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9'/%3E%3Cpath d='M10 21h4'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* 이전에 HTML에 넣었던 종 SVG가 남아 있다면
+   중복 표시되지 않도록 숨김 */
+body[data-page="parking"] #scheduleAlertBtn .alert-button-icon {
+  display: none !important;
+}
+
+/* 작은 휴대폰 화면 대응 */
+@media (max-width: 480px) {
+  body[data-page="parking"] .ssgp-nearby-link,
+  body[data-page="parking"] #scheduleAlertBtn {
+    font-size: 14px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+/* 주변 주차장 버튼 - 혼잡도별 테두리·아이콘 색상 */
+
+/* 기본: 여유 */
+body[data-page="parking"] .ssgp-nearby-link {
+  --parking-accent: #016922;
+  background: #fff !important;
+  color: #252525 !important;
+  border: 1px solid var(--parking-accent) !important;
+  box-shadow: none !important;
+  animation: none !important;
+}
+
+/* 아이콘 색상 */
+body[data-page="parking"] .ssgp-nearby-link::before,
+body[data-page="parking"] .ssgp-nearby-link svg {
+  color: var(--parking-accent) !important;
+}
+
+/* 혼잡: 70~99% */
+body[data-page="parking"]:has(
+  #overallTrafficLight .yellow.on
+) .ssgp-nearby-link {
+  --parking-accent: #D99A00;
+  animation: parkingStatusBlink 1.2s ease-in-out
+    infinite !important;
+}
+
+/* 만차: 100% */
+body[data-page="parking"]:has(
+  #overallTrafficLight .red.on
+) .ssgp-nearby-link {
+  --parking-accent: #DC403A;
+  animation: parkingStatusBlink 0.9s ease-in-out
+    infinite !important;
+}
+
+/* 테두리 깜빡임 */
+@keyframes parkingStatusBlink {
+  0%, 100% {
+    border-color: var(--parking-accent);
+    box-shadow: 0 0 0 0 transparent;
+  }
+  50% {
+    border-color: var(--parking-accent);
+    box-shadow: 0 0 0 5px
+      color-mix(in srgb,
+        var(--parking-accent) 20%, transparent);
+  }
+}
+
+/* 움직임 최소화 설정 존중 */
+@media (prefers-reduced-motion: reduce) {
+  body[data-page="parking"] .ssgp-nearby-link {
+    animation: none !important;
+    border-color: var(--parking-accent) !important;
+  }
+}
