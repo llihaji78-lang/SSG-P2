@@ -1,0 +1,342 @@
+/* SSG-P Retail App Refresh v1 — E-Mart-inspired visual polish, SSG-P green preserved.
+   Design-only layer: does not alter component IDs, links, JS logic, or store datasets.
+   Undo by removing its <link> element from the HTML pages. */
+
+:root {
+  --green: #016922;
+  --green-2: #087b33;
+  --green-soft: #eaf5ee;
+  --black: #20211f;
+  --text: #20211f;
+  --muted: #777d7a;
+  --line: #e8eae8;
+  --bg: #f6f7f6;
+  --white: #ffffff;
+  --shadow: 0 3px 16px rgba(18, 36, 25, .035);
+  --radius: 17px;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+body { color:var(--text); background:#f3f5f3; }
+body .app { background:#fff; }
+body button, body a, body input { -webkit-tap-highlight-color: transparent; }
+body :focus-visible { outline: 3px solid rgba(1,105,34,.32); outline-offset: 3px; }
+
+/* App toolbar: white and restrained, like a real retail app. */
+body .header, body .ssgp-detail-header { background:#fff !important; backdrop-filter:none; border-color:#e9ece9; }
+body .ssgp-detail-top { border-bottom:1px solid #f0f2ef; }
+body .ssgp-detail-action, body .bell-btn,
+body .ssgp-notification-close {
+  background:#fff; border-color:#e6e9e6; border-radius:12px;
+  box-shadow:none; color:#202320;
+}
+body .ssgp-detail-action:hover, body .bell-btn:hover { background:#f6f8f6; }
+body .ssgp-detail-store-row { border-top:0 !important; background:#fff; }
+body .ssgp-detail-store-row .store-trigger { font-weight:750; letter-spacing:-.35px; }
+body .store-trigger:active { opacity:.7; }
+body .ssgp-detail-top > .page-title { font-weight:850 !important; letter-spacing:-.65px; }
+
+/* Layout remains max 760px; tighter hierarchy and less floating-card effect. */
+body .app > main { padding-top:22px; }
+body .section { margin-bottom:17px; }
+body .card, body .policy-section, body .info-card, body .notification, body .result-card,
+body .vehicle-summary, body .floor-map-box, body .guide {
+  border-color:#e8ebe8; border-radius:17px; box-shadow:var(--shadow);
+}
+body .section-head h2, body .policy-section h3 { color:#202320; font-weight:850; letter-spacing:-.45px; }
+body .section-head p, body .info-card p, body .note { color:#737a75; }
+body .note { background:#f7f9f7; border:1px solid #eff1ee; border-radius:12px; }
+
+/* Home: brand-style editorial hierarchy, keep original 2x2 links and text. */
+body[data-page="home"] .hero { padding:30px 4px 28px; text-align:center; }
+body[data-page="home"] .hero .eyebrow {
+  display:inline-block; color:#016922; font-size:12px; font-weight:850;
+  letter-spacing:1px; line-height:1.4;
+}
+body[data-page="home"] .hero h1 {
+  font-size:clamp(26px,4.7vw,35px); line-height:1.29; letter-spacing:-1.4px;
+  margin:13px auto 14px; font-weight:850; word-break:keep-all;
+}
+body[data-page="home"] .hero p {
+  max-width:580px; margin:0 auto; font-size:13.5px; line-height:1.75;
+  color:#737a75; word-break:keep-all;
+}
+body[data-page="home"] .home-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+body[data-page="home"] .home-card {
+  min-height:179px; padding:22px 16px; border:1px solid #e8ebe8;
+  border-radius:19px; box-shadow:0 3px 12px rgba(30,45,33,.045);
+  justify-content:center; text-align:center;
+  transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease;
+}
+body[data-page="home"] .home-card > div {display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%;}
+body[data-page="home"] .home-card .icon-box {
+  width:48px; height:48px; border-radius:14px; background:#eaf5ee;
+  color:#016922; margin:0 auto 12px; display:grid; place-items:center;
+}
+body[data-page="home"] .home-card .icon-box svg { width:24px;height:24px; }
+body[data-page="home"] .home-card h2 { margin:3px 0 6px; font-size:16px; font-weight:850; letter-spacing:-.5px; }
+body[data-page="home"] .home-card p { font-size:11.8px; color:#7b817c; line-height:1.5; word-break:keep-all; }
+body[data-page="home"] .home-card:hover { transform:translateY(-2px); border-color:#b9d9c5; box-shadow:0 6px 19px rgba(1,105,34,.09); }
+
+/* Parking: retain the existing signal, data cards, color meanings, and JS. */
+body[data-page="parking"] .status-hero { border-radius:20px; padding:22px; }
+body[data-page="parking"] .status-label { color:#66726b; font-size:13px; font-weight:750; }
+body[data-page="parking"] .status-rate-secondary { color:#7c827e; }
+body[data-page="parking"] .progress { background:#edf0ed; height:9px; }
+body[data-page="parking"] .type-box {
+  border-radius:14px !important; background:#f9faf9 !important; border-color:#e9edea !important;
+}
+body[data-page="parking"] .type-box strong { font-variant-numeric:tabular-nums; }
+body[data-page="parking"] .floor-summary { background:#fbfcfb; border-color:#e9edea; border-radius:15px; }
+body[data-page="parking"] .floor-tab,
+body[data-page="nearby"] .seg-tab, body .seg-tab {
+  border-radius:999px; border-color:#e6e9e6; background:#fff;
+  font-weight:750; box-shadow:none;
+}
+body[data-page="parking"] .floor-tab.active, body .seg-tab.active { background:#016922; border-color:#016922; color:#fff; }
+body[data-page="parking"] .pred { border-radius:14px; border-color:#e8ebe8; background:#fff; }
+body[data-page="parking"] .pred strong {font-variant-numeric:tabular-nums;}
+body[data-page="parking"] #scheduledAlertSection { padding:20px; }
+body[data-page="parking"] .alert-time-group { justify-content:center; }
+body[data-page="parking"] .alert-time-group .floor-tab { border-color:#e3e8e4; text-align:center; }
+
+/* Nearby listings / map: deliberately do not change generated card DOM. */
+body[data-page="nearby"] .map-actual { border-radius:16px; border-color:#e8ebe8; }
+body[data-page="nearby"] .info-list { gap:10px; }
+body[data-page="nearby"] .info-card { background:#fff; padding:17px; }
+body[data-page="nearby"] .info-card h3 { font-weight:800; letter-spacing:-.35px; }
+body[data-page="nearby"] .tag { border-radius:7px; background:#eaf5ee; color:#016922; }
+
+/* Vehicle / registration: form polish without changing hidden select mechanics. */
+body[data-page="vehicle"] .vehicle-intro,
+body[data-page="vehicle"] .policy-section,
+body[data-page="vehicle"] .floor-summary { border-color:#e8ebe8; }
+body[data-page="register"] .field label {color:#343b36;}
+body[data-page="register"] .input,
+body[data-page="register"] .select { border-radius:13px; border-color:#dfe5df; background:#fff; }
+body[data-page="register"] .check-box { border-color:#e6ece7; border-radius:15px; background:#f7faf7; }
+body[data-page="register"] .modal-top h1 {font-weight:850;}
+
+/* Primary actions: consistent green, intentional compact form. */
+body .primary { background:#016922; border-radius:12px; font-weight:800; box-shadow:none; }
+body .primary:hover { background:#075b22; }
+body .primary:active { transform:translateY(1px); }
+body .small-btn { border-color:#e3e8e4; border-radius:11px; }
+
+/* Fixed bottom navigation: near-white shopping app tab bar. */
+body .bottom-nav {
+  background:rgba(255,255,255,.985); border-top:1px solid #e6e9e6;
+  box-shadow:0 -6px 20px rgba(20,40,27,.035);
+}
+body .nav-item {color:#848a85; font-weight:750;}
+body .nav-item.active { color:#016922; }
+body .nav-item.active:before { background:#016922; }
+
+/* Sheets and notifications. */
+body .store-drawer { border-radius:24px 24px 0 0; }
+body .notification { border-radius:15px; }
+
+@media (max-width:430px) {
+  body .app > main {padding-top:17px;}
+  body[data-page="home"] .hero {padding:25px 0 24px;}
+  body[data-page="home"] .hero h1 {font-size:27px;}
+  body[data-page="home"] .hero p {font-size:12px;}
+  body[data-page="home"] .home-grid {gap:10px;}
+  body[data-page="home"] .home-card {min-height:159px;padding:18px 10px;border-radius:17px;}
+  body[data-page="home"] .home-card .icon-box {width:43px;height:43px;margin-bottom:11px;}
+  body[data-page="home"] .home-card h2 {font-size:14.5px;}
+  body[data-page="home"] .home-card p {font-size:10.5px;}
+  body[data-page="parking"] .status-hero {padding:16px;}
+  body[data-page="parking"] #scheduledAlertSection {padding:16px;}
+}
+@media (prefers-reduced-motion:reduce) {
+  body[data-page="home"] .home-card {transition:none;}
+}
+/* ===== 헤더 버튼 박스 느낌 제거 ===== */
+.ssgp-detail-action,
+.bell-btn,
+.header .back-btn,
+.header .home-btn,
+.header .icon-btn {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+}
+
+/* 아이콘 자체 크기 정리 */
+.ssgp-detail-action svg,
+.bell-btn svg,
+.bell-btn [data-icon],
+.ssgp-detail-action [data-icon] {
+  width: 28px !important;
+  height: 28px !important;
+  display: block;
+}
+
+/* 왼쪽 버튼들 간격 */
+.ssgp-detail-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 알림 버튼도 그냥 아이콘처럼 보이게 */
+.bell-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 뱃지는 유지 */
+.bell-btn .badge {
+  position: absolute;
+}
+/* ===== 헤더 위아래 선 제거 ===== */
+.header,
+.logo-row,
+.header-inner,
+.ssgp-detail-top,
+.ssgp-detail-store-row {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 혹시 아래선이 pseudo-element로 들어간 경우도 제거 */
+.header::before,
+.header::after,
+.logo-row::before,
+.logo-row::after,
+.header-inner::before,
+.header-inner::after,
+.ssgp-detail-top::before,
+.ssgp-detail-top::after,
+.ssgp-detail-store-row::before,
+.ssgp-detail-store-row::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 점포선택 줄 자체도 더 깔끔하게 */
+.store-trigger {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding-left: 0 !important;
+}
+/* ===== 하단 네비 아이콘 찌그러짐 방지 ===== */
+.bottom-nav [data-icon] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px !important;
+  height: 26px !important;
+  flex: 0 0 26px !important;
+  aspect-ratio: 1 / 1;
+}
+
+.bottom-nav [data-icon] svg {
+  width: 26px !important;
+  height: 26px !important;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* 카드 안 아이콘도 정사각형 유지 */
+.quick-link-icon,
+.service-card .icon,
+.menu-card .icon,
+.card-icon {
+  width: 28px !important;
+  height: 28px !important;
+  aspect-ratio: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quick-link-icon svg,
+.service-card .icon svg,
+.menu-card .icon svg,
+.card-icon svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* SSG-P 공통 상단 - 아이콘 테두리 제거 */
+
+body .ssgp-detail-header .ssgp-detail-action,
+body .ssgp-detail-header .bell-btn {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* 로고·제목·점포 선택 사이의 구분선 제거 */
+body .ssgp-detail-header,
+body .ssgp-detail-header .logo-row,
+body .ssgp-detail-header .ssgp-detail-top,
+body .ssgp-detail-header .ssgp-detail-store-row {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* 기존 아이콘 형태와 크기 유지 */
+body .ssgp-detail-header .ssgp-detail-action svg,
+body .ssgp-detail-header .bell-btn svg {
+  display: block;
+}
+
+/* 알림함의 오른쪽 X 버튼도 깔끔하게 */
+body[data-page="notifications"] .ssgp-notification-close {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+[data-icon] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-icon] img.ssgp-image-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+}
+
+/* 시작화면 카드 아이콘 */
+.icon-box [data-icon] {
+  width: 32px;
+  height: 32px;
+}
+
+/* 하단 네비게이션 아이콘 */
+.bottom-nav [data-icon] {
+  width: 26px;
+  height: 26px;
+}
+
+/* 음성 서비스 중앙 마이크만 수정 */
+body[data-page="voice"] .voice-main-mic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body[data-page="voice"] .voice-main-mic svg {
+  display: block;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+}
