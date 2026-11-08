@@ -665,3 +665,14 @@ body[data-page="parking"]:has(
     border-color: var(--parking-accent) !important;
   }
 }
+/* 주차현황 / 내 차량 찾기 상단 빈 공간 줄이기 */
+body[data-page="parking"] .app > main,
+body[data-page="vehicle"] .app > main {
+  padding-top: 4px !important;
+}
+
+/* 첫 번째 콘텐츠가 추가 여백을 만들지 않도록 */
+body[data-page="parking"] main > :first-child,
+body[data-page="vehicle"] main > :first-child {
+  margin-top: 0 !important;
+}
