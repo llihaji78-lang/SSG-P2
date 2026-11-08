@@ -676,3 +676,24 @@ body[data-page="parking"] main > :first-child,
 body[data-page="vehicle"] main > :first-child {
   margin-top: 0 !important;
 }
+/* 주변 주차장 · 내 차량 찾기: 상단 여백 줄이기 */
+body[data-page="nearby"] .app > main,
+body[data-page="vehicle"] .app > main {
+  padding-top: 4px !important;
+}
+
+/* 주변 주차장: 첫 번째 탭 영역 */
+body[data-page="nearby"] main > .section:first-child {
+  margin-top: 0 !important;
+}
+
+/* 내 차량 찾기: 첫 번째 안내 영역 */
+body[data-page="vehicle"] main > .vehicle-intro {
+  margin-top: 0 !important;
+  padding-top: 8px !important;
+}
+
+/* 내 차량 찾기: 첫 번째 제목 */
+body[data-page="vehicle"] .vehicle-intro > h2:first-child {
+  margin-top: 0 !important;
+}
