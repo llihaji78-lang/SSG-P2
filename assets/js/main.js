@@ -93,7 +93,7 @@ const VEHICLE_MAPS = {
       { key: "4층", label: "4층", image: "assets/images/floor4_cropped.png", note: "4층 주차장 도면" },
       { key: "5층", label: "5층(옥상)", image: "assets/images/floor3_cropped.png", note: "5층 옥상 · 3층 도면 기반 시뮬레이션" }
     ],
-    pin: { floor: "4층", x: 0.545, y: 0.425 },
+    pin: { floor: "4층", x: 0.545, y: 0.415 },
     spotName: "4층 · 지정 주차면 (시뮬레이션)"
   },
   hanam: {
@@ -106,7 +106,7 @@ const VEHICLE_MAPS = {
       { key: "야외", label: "야외주차장", image: "assets/images/floor3_cropped.png", note: "하남점 야외주차장 · 시뮬레이션 배치도" }
     ],
 
-    pin: { floor: "B2", x: 0.585, y: 0.52 },
+    pin: { floor: "B2", x: 0.585, y: 0.454 },
     spotName: "지하 2층 · 지정 주차면 (시뮬레이션)"
   },
   ilsan: {
