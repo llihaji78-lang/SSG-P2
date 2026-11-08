@@ -1,0 +1,48 @@
+/* SSG-P: vehicle page only. Does not change any page or JS behavior. */
+body[data-page="vehicle"] .vehicle-intro,
+body[data-page="vehicle"] .ssgp-reg-promo,
+body[data-page="vehicle"] .policy-section,
+body[data-page="vehicle"] .vehicle-locator,
+body[data-page="vehicle"] .notice-card,
+body[data-page="vehicle"] .ssgp-registered-ticket-section,
+body[data-page="vehicle"] .floor-map-box,
+body[data-page="vehicle"] .floor-summary,
+body[data-page="vehicle"] .ssgp-ticket-card {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Keep the registered vehicle / saved location summary clearly outlined. */
+body[data-page="vehicle"] .vehicle-summary {
+  border: 1px solid #e2e8e2 !important;
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: none !important;
+}
+
+/* Match the adjacent applicability note's font and color, without removing link behavior. */
+body[data-page="vehicle"] .policy-section a.inline-link[href="eligible-stores.html"] {
+  color: #595652 !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+/* 나의 주차권 상세 화면 - 스크롤바 숨기기 */
+#ssgpTicketDetail .ssgp-ticket-dialog-body {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none;
+}
+
+#ssgpTicketDetail .ssgp-ticket-dialog-body::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* 나의 주차권 상세 화면 - X 버튼 테두리 제거 */
+#ssgpTicketDetail .ssgp-ticket-dialog-close {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0;
+}

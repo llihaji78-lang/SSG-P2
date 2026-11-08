@@ -1,0 +1,73 @@
+/* SSG-P vehicle-only refinement. Keep existing JS, registration and ticket behavior. */
+body[data-page="vehicle"] #vehicleLocator {
+  box-sizing: border-box !important;
+  width: auto !important;
+  max-width: 100% !important;
+  margin-left: 12px !important;
+  margin-right: 12px !important;
+  min-width: 0 !important;
+}
+body[data-page="vehicle"] #vehicleLocator .section-head,
+body[data-page="vehicle"] #vehicleLocator .vehicle-summary,
+body[data-page="vehicle"] #vehicleLocator .floor-tabs,
+body[data-page="vehicle"] #vehicleLocator .floor-map-box,
+body[data-page="vehicle"] #vehicleLocator .map-action-row {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+}
+body[data-page="vehicle"] #vehicleLocator .vehicle-summary > div { min-width: 0; }
+body[data-page="vehicle"] #vehicleLocator .vehicle-summary strong {
+  overflow-wrap: anywhere;
+}
+/* Do not let long floor names stretch the mobile viewport. */
+body[data-page="vehicle"] #vehicleLocator .floor-tabs {
+  display: flex;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+body[data-page="vehicle"] #vehicleLocator .floor-tabs::-webkit-scrollbar { display: none; }
+body[data-page="vehicle"] #vehicleLocator .floor-tab { flex-shrink: 0; }
+body[data-page="vehicle"] #vehicleLocator #floorMapBox {
+  width: 100%;
+  overflow: hidden;
+}
+/* The pin's percentage coordinates must refer to the IMAGE, not the
+   image plus the explanatory caption below it. */
+body[data-page="vehicle"] #vehicleLocator .ssgp-vehicle-map-image-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  line-height: 0;
+}
+body[data-page="vehicle"] #vehicleLocator .ssgp-vehicle-map-image-wrap > #floorMap {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain;
+}
+body[data-page="vehicle"] #vehicleLocator .ssgp-vehicle-map-image-wrap > #carPin {
+  position: absolute !important;
+}
+body[data-page="vehicle"] #vehicleLocator .map-disclaimer {
+  box-sizing: border-box;
+  width: 100%;
+  line-height: 1.5;
+}
+@media (max-width: 430px) {
+  body[data-page="vehicle"] #vehicleLocator {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+  }
+  body[data-page="vehicle"] #vehicleLocator .floor-tab {
+    padding-left: 11px;
+    padding-right: 11px;
+    font-size: 12px;
+  }
+}

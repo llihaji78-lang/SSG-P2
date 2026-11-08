@@ -1,0 +1,104 @@
+/* SSG-P parking page: nearby parking callout warning only at >=90%. */
+body[data-page="parking"] #ssgpNearbyCallout {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+body[data-page="parking"] #ssgpNearbyCallout .ssgp-nearby-link {
+  --nearby-status-color: #016922;
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  background: #fff !important;
+  color: #252525 !important;
+  border: 1px solid var(--nearby-status-color) !important;
+  box-shadow: none !important;
+  animation: none !important;
+  text-decoration: none;
+}
+/* Preserve existing P icon shape; change its color only. */
+body[data-page="parking"] #ssgpNearbyCallout .ssgp-nearby-link::before,
+body[data-page="parking"] #ssgpNearbyCallout .ssgp-nearby-link svg {
+  color: var(--nearby-status-color) !important;
+}
+/* Do NOT use #overallTrafficLight .yellow.on: that means >=70%. */
+body[data-page="parking"] #ssgpNearbyCallout.is-imminent .ssgp-nearby-link {
+  --nearby-status-color: #e87919;
+}
+body[data-page="parking"] #ssgpNearbyCallout.is-full .ssgp-nearby-link {
+  --nearby-status-color: #d63d33;
+}
+/* A separate pseudo-element blinks, so the base !important styles cannot suppress it. */
+body[data-page="parking"] #ssgpNearbyCallout .ssgp-nearby-link::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: -1px;
+  border: 2px solid var(--nearby-status-color);
+  border-radius: inherit;
+  opacity: 0;
+}
+body[data-page="parking"] #ssgpNearbyCallout.is-imminent .ssgp-nearby-link::after {
+  animation: ssgpNearbyWarningPulse 1.2s ease-in-out infinite !important;
+}
+body[data-page="parking"] #ssgpNearbyCallout.is-full .ssgp-nearby-link::after {
+  animation: ssgpNearbyWarningPulse .9s ease-in-out infinite !important;
+}
+@keyframes ssgpNearbyWarningPulse {
+  0%, 100% { opacity: 0; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.025); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-page="parking"] #ssgpNearbyCallout.is-imminent .ssgp-nearby-link::after,
+  body[data-page="parking"] #ssgpNearbyCallout.is-full .ssgp-nearby-link::after {
+    animation: none !important;
+    opacity: 1;
+  }
+}
+/* 주변 주차장 버튼: 이중 테두리 제거 */
+body[data-page="parking"] #ssgpNearbyCallout
+.ssgp-nearby-link::after {
+  display: none !important;
+}
+
+/* 90% 이상: 기존 버튼 테두리를 투명하게 */
+body[data-page="parking"] #ssgpNearbyCallout.is-imminent
+.ssgp-nearby-link,
+body[data-page="parking"] #ssgpNearbyCallout.is-full
+.ssgp-nearby-link {
+  border-color: transparent !important;
+}
+
+/* 경고 상태에서는 테두리 한 줄만 표시 */
+body[data-page="parking"] #ssgpNearbyCallout.is-imminent
+.ssgp-nearby-link::after,
+body[data-page="parking"] #ssgpNearbyCallout.is-full
+.ssgp-nearby-link::after {
+  display: block !important;
+  position: absolute !important;
+  inset: -1px !important;
+  box-sizing: border-box !important;
+  border: 1px solid var(--nearby-status-color) !important;
+  border-radius: inherit !important;
+  transform: none !important;
+  pointer-events: none !important;
+  animation: nearbyBorderFade 1.4s ease-in-out infinite !important;
+}
+
+/* 테두리 색이 부드럽게 진해졌다 연해지는 효과 */
+@keyframes nearbyBorderFade {
+  0%, 100% {
+    opacity: 1;
+    transform: none;
+  }
+  50% {
+    opacity: 0.25;
+    transform: none;
+  }
+}
+
+/* 만차는 조금 더 빠르게 깜빡임 */
+body[data-page="parking"] #ssgpNearbyCallout.is-full
+.ssgp-nearby-link::after {
+  animation-duration: 1s !important;
+}
