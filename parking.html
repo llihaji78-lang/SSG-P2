@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/retail-polish.css?v=2">
+<link rel="stylesheet" href="assets/css/retail-polish.css?v=2"><link rel="stylesheet" href="assets/css/parking-floor-sheet.css?v=2">
 <title>주차현황 | SSG-P</title></head>
 <body data-page="parking" class=""><div class="app">
 <header class="header">
@@ -27,9 +27,10 @@
   </div>
 </header>
 <main>
+  <h2 class="parking-outside-title">현재 전체 주차 현황</h2>
 <section class="section card status-hero">
   <div class="status-top">
-    <div><div class="status-label">현재 전체 주차 현황</div><div class="status-count"><strong id="overallAvailable">--면</strong><span class="count-denominator"> / <span id="overallTotal">--면</span></span></div><div class="status-rate-secondary">점유율 <strong id="overallRate">--%</strong></div></div>
+    <div><div class="status-count"><strong id="overallAvailable">--면</strong><span class="count-denominator"> / <span id="overallTotal">--면</span></span></div><div class="status-rate-secondary">점유율 <strong id="overallRate">--%</strong></div></div>
     <div class="overall-signal-wrap" id="overallSignalWrap">
       <div class="traffic-light horizontal" id="overallTrafficLight" aria-label="전체 혼잡도 신호등">
         <span class="light green"></span><span class="light yellow"></span><span class="light red"></span>
@@ -48,7 +49,7 @@
   <div class="section-head"><div><h2>층별 주차 현황</h2><p>층별로 잔여 면수와 주차 유형을 확인하세요.</p></div></div>
   <div class="floor-tabs" id="floorTabs"></div><div id="floorPanels"></div>
 </section>
-<section class="section card card-pad">
+<section class="section card card-pad prediction-borderless">
   <div class="section-head"><div><h2>10·20·30분 후 혼잡도 예상</h2><p>가상 데이터 기반 예측 시뮬레이션</p></div></div>
   <div class="pred-grid" id="predictionGrid"></div>
 </section>
@@ -59,7 +60,20 @@
     <label class="floor-tab"><input type="radio" name="alertMinutes" value="20" checked>20분 후</label>
     <label class="floor-tab"><input type="radio" name="alertMinutes" value="30">30분 후</label>
   </div>
-  <button type="button" class="primary full" style="margin-top:14px" id="scheduleAlertBtn">선택한 시간에 알림 받기</button>
+
+<button type="button" class="primary full"
+        style="margin-top:14px"
+        id="scheduleAlertBtn">
+  <svg class="alert-button-icon" viewBox="0 0 24 24"
+       fill="none" stroke="currentColor" stroke-width="1.8"
+       stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+    <path d="M10 21h4"/>
+  </svg>
+  <span>혼잡도 변화 알림 켜기</span>
+</button>
+
   <button type="button" class="small-btn" id="cancelScheduledAlertBtn" hidden>예약 취소</button>
   <p id="scheduledAlertStatus" style="font-size:12px;line-height:1.6;color:#74726f;margin:12px 0 0" aria-live="polite">알림 시간이 설정되지 않았습니다.</p>
   <p class="note">웹사이트를 열어 둔 상태에서는 예약 시각에 알림을 표시합니다. 닫혀 있는 동안에는 자동 발송되지 않으며, 이후 다시 접속하면 지난 알림을 확인할 수 있습니다. 혼잡도 수치는 현재 가상 데이터 기반 예측값입니다.</p>
@@ -74,4 +88,4 @@
   <div class="store-section"><h3>즐겨찾는 점포</h3><div id="favoriteStores"></div></div>
   <div class="store-section"><h3>전체 점포</h3><div id="allStores"></div></div>
 </aside>
-</div><script src="assets/js/icons.js"></script><script src="assets/js/main.js"></script><script src="assets/js/scheduled-alert.js"></script><script src="assets/js/compact-parking.js?v=1"></script></body></html>
+</div><script src="assets/js/icons.js"></script><script src="assets/js/main.js"></script><script src="assets/js/scheduled-alert.js"></script><script src="assets/js/compact-parking.js?v=1"></script><script src="assets/js/parking-floor-sheet.js?v=2"></script></body></html>
