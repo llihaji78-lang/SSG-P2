@@ -757,7 +757,7 @@ function initNearbyNavigation() {
     detail.textContent = `현재 점유율 ${rate}% · 잔여 ${current.available}면. 만차 임박 기준은 90% 이상입니다.`;
   } else {
     heading.textContent = "주변 주차장도 확인해 보세요";
-    detail.textContent = "주차 공간이 부족할 경우 주변 공영·민영 주차장을 확인할 수 있어요.";
+    detail.textContent = "주차 공간이 부족할 경우 주변 주차장을 확인할 수 있어요.";
   }
 
   box.append(heading, detail, link);
