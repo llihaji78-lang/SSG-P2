@@ -1,0 +1,54 @@
+/* SSG-P alignment refinement: parking + vehicle only.
+   Based on uploaded SSG-P_GitHubPages_v3 (2).zip. */
+
+/* Parking page: use the same left/right edge as the overall status card. */
+body[data-page="parking"] .parking-outside-title {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Prediction title and description align with the prediction cards. */
+body[data-page="parking"] .prediction-borderless .section-head {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Dynamically inserted nearby parking callout: remove its former 18px inset. */
+body[data-page="parking"] #ssgpNearbyCallout {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+body[data-page="parking"] #ssgpNearbyCallout .ssgp-nearby-link {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Vehicle: align all primary sections with the same main content edges.
+   Keep registered vehicle/location summary inner box and its border intact. */
+body[data-page="vehicle"] main > .vehicle-intro,
+body[data-page="vehicle"] main > .policy-section,
+body[data-page="vehicle"] main > #vehicleLocator,
+body[data-page="vehicle"] main > .notice-card,
+body[data-page="vehicle"] main > .ssgp-registered-ticket-section {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* The locator's old explicit 12px / mobile 10px margins came from
+   vehicle-locator-mobile-fix.css. Remove those without changing map/pin math. */
+body[data-page="vehicle"] #vehicleLocator {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
