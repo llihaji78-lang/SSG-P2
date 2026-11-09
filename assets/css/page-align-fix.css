@@ -52,3 +52,27 @@ body[data-page="vehicle"] #vehicleLocator {
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
+/* 혼잡도 변화 알림 제목: 카드 바깥에 표시 */
+body[data-page="parking"] .scheduled-alert-heading {
+  margin: 28px 0 12px;
+  padding: 0;
+}
+
+body[data-page="parking"] .scheduled-alert-heading h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+body[data-page="parking"] .scheduled-alert-heading p {
+  margin: 0;
+  color: #777;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* 제목 아래 알림 카드와의 간격 */
+body[data-page="parking"] #scheduledAlertSection {
+  margin-top: 0;
+}
