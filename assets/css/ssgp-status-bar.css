@@ -70,5 +70,5 @@
 }
 /* 상태바 오른쪽 아이콘만 살짝 오른쪽으로 이동 */
 .ssgp-status-icons {
-  transform: translateX(10px);
+  transform: translateX(12px);
 }
