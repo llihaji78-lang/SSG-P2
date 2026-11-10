@@ -72,3 +72,18 @@
 .ssgp-status-icons {
   transform: translateX(12px);
 }
+/* 시간·와이파이·배터리 상태바 상단 고정 */
+.ssgp-status-bar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  background: #fff !important;
+}
+
+/* 홈·뒤로가기·페이지 제목 헤더를 상태바 바로 아래 고정 */
+.app > .header,
+.app > .ssgp-detail-header {
+  position: sticky !important;
+  top: 42px !important;
+  z-index: 90 !important;
+}
