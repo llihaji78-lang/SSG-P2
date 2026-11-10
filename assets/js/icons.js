@@ -3,7 +3,7 @@ const ICONS = {
 
   parking: `<img src="assets/images/icon-parking.png" alt="" class="ssgp-image-icon">`,
 
-
+  reservation: `<img src="assets/images/icon-reservation.png" alt="" class="ssgp-image-icon">`,
 
   pin: `<img src="assets/images/icon-nearby.png" alt="" class="ssgp-image-icon">`,
 
