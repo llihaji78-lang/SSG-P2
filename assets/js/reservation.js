@@ -108,6 +108,39 @@
     setTimeout(() => $(target).focus(),0);
   }
   function closePanel(){ $('reservationModal').hidden=true;document.body.classList.remove('reservation-dialog-open');modalMode=null; }
+  // 브라우저 alert 대신 SSG-P 전용 안내창 사용 (주소/「내용:」 표시 없음).
+  function showReservationNotice(message, { goToVehicle = false } = {}) {
+    const previousFocus = document.activeElement;
+    const overlay = document.createElement('div');
+    overlay.className = 'reservation-notice-overlay';
+    overlay.innerHTML = `<section class="reservation-notice-card" role="alertdialog" aria-modal="true" aria-labelledby="reservationNoticeTitle" aria-describedby="reservationNoticeMessage">
+      <div class="reservation-notice-mark" aria-hidden="true">!</div>
+      <h2 id="reservationNoticeTitle">차량 등록 안내</h2>
+      <p id="reservationNoticeMessage"></p>
+      <button class="reservation-notice-confirm" type="button">확인</button>
+    </section>`;
+    overlay.querySelector('#reservationNoticeMessage').textContent = message;
+    const button = overlay.querySelector('.reservation-notice-confirm');
+    let dismissed = false;
+    function dismiss() {
+      if (dismissed) return;
+      dismissed = true;
+      overlay.remove();
+      document.removeEventListener('keydown', onKeydown, true);
+      document.body.classList.remove('reservation-notice-open');
+      if (goToVehicle) location.href = 'vehicle.html';
+      else if (previousFocus && previousFocus.isConnected) previousFocus.focus();
+    }
+    function onKeydown(event) {
+      if (event.key === 'Escape') { event.preventDefault(); dismiss(); }
+      if (event.key === 'Tab') { event.preventDefault(); button.focus(); }
+    }
+    button.addEventListener('click', dismiss);
+    document.addEventListener('keydown', onKeydown, true);
+    document.body.append(overlay);
+    document.body.classList.add('reservation-notice-open');
+    button.focus();
+  }
   function init() {
     if(document.body.dataset.page!=='reservation')return;
     $('reservationBack').addEventListener('click',()=>{if(history.length>1 && document.referrer && new URL(document.referrer).origin===location.origin)history.back();else location.href='ssgp-home.html';});
@@ -115,16 +148,16 @@
       if(store.full || !chosen)return;
       if(readRecord()){render();return;}
       const vehicle=readVehicle();
-      if(!vehicle){alert('주차 예약을 이용하려면 내 차량 찾기에서 차량번호를 먼저 등록해 주세요.');location.href='vehicle.html';return;}
+      if(!vehicle){showReservationNotice('주차 예약을 이용하려면 내 차량 찾기에서 차량번호를 먼저 등록해 주세요.', {goToVehicle:true});return;}
       const plate=plateText(vehicle);
-      if(!plate){alert('등록된 차량번호를 확인해 주세요.');return;}
+      if(!plate){showReservationNotice('등록된 차량번호를 확인해 주세요.');return;}
       $('reservationConfirmDetails').innerHTML=details({storeName:store.name,floor:floorData().name,space:chosen,plate});
       showPanel('confirm');
     });
     $('reservationSubmit').addEventListener('click',()=>{
       if(store.full || !chosen || readRecord())return;
       const vehicle=readVehicle();const plate=plateText(vehicle);
-      if(!plate){closePanel();alert('등록 차량번호가 없습니다. 먼저 차량번호를 등록해 주세요.');return;}
+      if(!plate){closePanel();showReservationNotice('등록 차량번호가 없습니다. 먼저 차량번호를 등록해 주세요.', {goToVehicle:true});return;}
       const data={version:1,storeId,storeName:store.name,floor:floorData().name,space:chosen,plate,createdAt:new Date().toISOString()};
       localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
       $('reservationDoneDetails').innerHTML=details(data);
