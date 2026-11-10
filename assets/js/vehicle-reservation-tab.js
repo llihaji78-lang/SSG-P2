@@ -27,6 +27,25 @@
     return node;
   };
 
+  const POLICY_ITEMS = [
+    '예약 가능한 주차 시간은 최대 3시간입니다.',
+    '예약 입차 예정 시각부터 1시간이 경과할 때까지 입차하지 않으면 노쇼로 예약이 취소됩니다.',
+    '예약 출차 시각을 초과하면 초과 시간 10분당 1,000원의 페널티가 부과됩니다.'
+  ];
+  const fmt = value => {
+    if(!value)return '미설정 (기존 예약)';
+    const d=new Date(value);if(!Number.isFinite(d.getTime()))return '일시 확인 필요';
+    const pad=n=>String(n).padStart(2,'0');
+    return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  };
+  function appendPolicy(target) {
+    const section=make('section','ssgp-reservation-policy');
+    section.append(make('h3','','이용 안내'));
+    const ul=make('ul','');
+    POLICY_ITEMS.forEach(item=>ul.append(make('li','',item)));
+    section.append(ul,make('p','ssgp-reservation-policy-demo','※ 시연용 안내입니다. 실제 입·출차 감지, 자동 취소 및 요금 부과와 연동되지 않습니다.'));
+    target.append(section);
+  }
   function buildMap(map, booking) {
     map.replaceChildren();
     const storeId = booking.storeId === 'guseong' ? 'ilsan' : booking.storeId;
@@ -81,7 +100,7 @@
       return;
     }
     const info=make('div','ssgp-reservation-info');
-    const entries=[['예약 점포',booking.storeName || booking.storeId],['예약 층',booking.floor],['예약 자리',String(booking.space)],['차량번호',maskPlate(vehicle)]];
+    const entries=[['예약 점포',booking.storeName || booking.storeId],['예약 층',booking.floor],['예약 자리',String(booking.space)],['차량번호',maskPlate(vehicle)],['예약 입차 일시',fmt(booking.entryAt)],['예약 출차 일시',fmt(booking.exitAt)]];
     for(const [label,value] of entries){
       const cell=make('div','ssgp-reservation-info-cell');
       cell.append(make('span','',label),make('strong','',value));info.append(cell);
@@ -94,7 +113,7 @@
     const map=make('div','ssgp-reservation-floor-map');
     map.setAttribute('aria-label',`${booking.floor} 예약 주차면 위치`);
     target.append(map);buildMap(map,booking);
-    target.append(make('p','ssgp-reservation-small-note','노란색 테두리의 ‘예약됨’이 내 예약 자리예요. 빨간색 ‘주차 중’과 빈자리는 시연용 표시이며 실제 주차 현황과 다를 수 있어요.'));
+    appendPolicy(target);
   }
 
   function init(){
