@@ -167,7 +167,7 @@
     $('reservationCancel').addEventListener('click',()=>showPanel('cancel'));
     $('reservationCancelBack').addEventListener('click',closePanel);
     $('reservationCancelSubmit').addEventListener('click',()=>{localStorage.removeItem(STORAGE_KEY);chosen=null;closePanel();render();});
-    $('reservationViewVehicle').addEventListener('click',()=>{location.href='vehicle.html';});
+    $('reservationViewVehicle').addEventListener('click',()=>{location.href='vehicle.html?tab=reservation';});
     document.querySelectorAll('[data-close-sheet]').forEach(x=>x.addEventListener('click',()=>{if(modalMode==='confirm')closePanel();}));
     document.addEventListener('keydown',e=>{if(e.key==='Escape' && modalMode==='confirm')closePanel();});
     render();
