@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>주차 예약 | SSG-P</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/retail-polish.css?v=2">
+  <link rel="stylesheet" href="assets/css/detail-header.css?v=20261107-5">
+  <link rel="stylesheet" href="assets/css/ssgp-status-bar.css?v=9">
+  <link rel="stylesheet" href="assets/css/reservation.css?v=7">
+</head>
+<body data-page="reservation">
+<div class="app">
+  <header class="header ssgp-detail-header">
+    <div class="ssgp-detail-top">
+      <div class="ssgp-detail-actions">
+        <button class="ssgp-detail-action" id="reservationBack" type="button" aria-label="뒤로 가기">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+        </button>
+        <a class="ssgp-detail-action" href="traders.html" aria-label="트레이더스 앱 홈으로 이동">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/></svg>
+        </a>
+      </div>
+      <h1 class="page-title">주차 예약</h1>
+      <a class="bell-btn" href="notifications.html" aria-label="알림함"><span data-icon="bell"></span><span class="badge" style="display:none"></span></a>
+    </div>
+    <div class="ssgp-detail-store-row">
+      <button class="store-trigger" id="storeTrigger" type="button">
+        <span class="store-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#016922" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18M5 10V21h14V10M3 10l2-7h14l2 7M9 21v-7h6v7"/><path d="M3 10c0 2 4 2 4 0M7 10c0 2 4 2 4 0M11 10c0 2 4 2 4 0M15 10c0 2 4 2 4 0"/></svg></span>
+        <span id="currentStoreName">트레이더스 월계점</span><span class="chev">▾</span>
+      </button>
+    </div>
+  </header>
+  <main class="reservation-main">
+    <section id="reservationBooking" aria-label="주차면 예약">
+      <div class="reservation-booking-intro" id="reservationBookingIntro">
+        <p class="member-note">트레이더스 멤버스 전용</p>
+        <p class="reservation-intro">비어 있는 주차면을 선택해 예약할 수 있어요.</p>
+        <p class="reservation-disclaimer">시연용 예약 서비스 · 실제 트레이더스 시스템과 연결되지 않습니다.</p>
+      </div>
+      <div class="reservation-floor-picker" id="reservationFloorPicker" role="group" aria-label="예약 층 선택"></div>
+      <div class="reservation-map-heading"><h2>주차면 선택</h2><span id="reservationFloorLabel">4층 · 시연용 도면</span></div>
+      <div class="reservation-legend" aria-label="주차면 상태 구분">
+        <span><i class="legend-dot available"></i>예약 가능</span>
+        <span><i class="legend-dot occupied"></i>주차 중</span>
+        <span><i class="legend-dot reserved"></i>예약됨</span>
+      </div>
+      <div class="reservation-map" id="reservationMap" role="group" aria-label="예약 주차면 선택 도면"></div>
+      <div class="reservation-selection" aria-live="polite">
+        <span id="reservationSelectionText">예약할 주차면을 선택해 주세요.</span>
+      </div>
+      <button type="button" class="reservation-primary" id="reservationOpenConfirm" disabled>예약하기</button>
+    </section>
+
+    <section id="reservationActive" class="reservation-active" hidden aria-label="현재 주차 예약">
+      <div class="reservation-active-icon" aria-hidden="true">✓</div>
+      <h2>예약된 주차 공간이 있어요</h2>
+      <p>이미 예약한 주차면을 확인하거나 예약을 취소할 수 있어요.</p>
+      <div class="reservation-summary" id="reservationActiveDetails"></div>
+      <button type="button" class="reservation-primary" id="reservationViewVehicle">내 차량 찾기 페이지 열기</button>
+      <button type="button" class="reservation-outline" id="reservationCancel">예약 취소하기</button>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="하단 메뉴">
+    <a class="nav-item" href="parking.html"><span data-icon="parking"></span><span>주차현황</span></a>
+    <a class="nav-item active" href="reservation.html">
+  <span data-icon="reservation"></span>
+  <span>주차 예약</span>
+</a>
+    <a class="nav-item" href="voice.html"><span data-icon="mic"></span><span>음성 서비스</span></a>
+    <a class="nav-item" href="vehicle.html"><span data-icon="car"></span><span>내 차량 찾기</span></a>
+  </nav>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="store-drawer" id="storeDrawer">
+    <div class="drawer-grip"></div><div class="drawer-head"><h2>점포 선택</h2><button class="close-btn" id="drawerClose" type="button">×</button></div>
+    <div class="store-section"><h3>즐겨찾는 점포</h3><div id="favoriteStores"></div></div>
+    <div class="store-section"><h3>전체 점포</h3><div id="allStores"></div></div>
+  </aside>
+</div>
+
+<div class="reservation-modal" id="reservationModal" hidden>
+  <div class="reservation-modal-backdrop" data-close-sheet></div>
+  <section class="reservation-sheet" role="dialog" aria-modal="true" aria-labelledby="reservationSheetTitle">
+    <div class="reservation-grip"></div>
+    <div id="reservationConfirmPanel">
+      <button class="reservation-sheet-close" type="button" data-close-sheet aria-label="닫기">×</button>
+      <h2 id="reservationSheetTitle">예약 내용을 확인해 주세요.</h2>
+      <p class="reservation-sheet-description">아래 내용으로 주차 자리를 예약할까요?</p>
+      <div class="reservation-summary" id="reservationConfirmDetails"></div>
+      <button type="button" class="reservation-primary" id="reservationSubmit">예약하기</button>
+    </div>
+    <div id="reservationDonePanel" hidden>
+      <div class="reservation-done-mark" aria-hidden="true">✓</div>
+      <h2 id="reservationDoneTitle">예약 완료!</h2>
+      <p class="reservation-done-description">선택한 주차 공간이 예약되었어요.<br>예약한 위치에 편하게 주차하세요.</p>
+      <div class="reservation-summary" id="reservationDoneDetails"></div>
+      <button type="button" class="reservation-primary" id="reservationDoneClose">확인</button>
+    </div>
+    <div id="reservationCancelPanel" hidden>
+      <h2 id="reservationCancelTitle">예약을 취소할까요?</h2>
+      <p class="reservation-sheet-description">취소하면 해당 주차면을 다시 예약할 수 있어요.</p>
+      <div class="reservation-cancel-actions"><button type="button" class="reservation-outline" id="reservationCancelBack">돌아가기</button><button type="button" class="reservation-primary" id="reservationCancelSubmit">예약 취소</button></div>
+    </div>
+  </section>
+</div>
+<script src="assets/js/icons.js?v=3"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/ssgp-status-bar.js?v=5"></script>
+<script src="assets/js/reservation.js?v=7"></script>
+</body>
+</html>
