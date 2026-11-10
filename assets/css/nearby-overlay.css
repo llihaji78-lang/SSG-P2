@@ -1,0 +1,31 @@
+/* 주변 주차장 전용: 알림함형 상단 + 하단 메뉴 숨김 */
+body[data-page="nearby"] .bottom-nav,
+body[data-page="nearby"] #ssgpNearbyBack,
+body[data-page="nearby"] .ssgp-nearby-back { display: none !important; }
+
+/* 상단 왼쪽 뒤로가기/홈, 오른쪽 알림만 제거. 점포 선택은 유지 */
+body[data-page="nearby"] .ssgp-detail-top > .ssgp-detail-actions,
+body[data-page="nearby"] .ssgp-detail-top > .bell-btn { display: none !important; }
+body[data-page="nearby"] .ssgp-detail-header .ssgp-detail-top {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+}
+body[data-page="nearby"] .ssgp-detail-header .ssgp-detail-top > .page-title {
+  left: 50% !important;
+  max-width: calc(100% - 112px) !important;
+  text-align: center !important;
+}
+body[data-page="nearby"] .ssgp-nearby-close {
+  position: relative;
+  z-index: 3;
+  margin-left: auto;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline-offset: 3px;
+  padding: 0;
+  cursor: pointer;
+}
+/* 네비게이션이 빠진 페이지의 아래쪽을 자연스럽게 */
+body[data-page="nearby"] .app > main { padding-bottom: 24px !important; }
