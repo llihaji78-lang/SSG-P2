@@ -109,7 +109,7 @@
     const heading=make('div','ssgp-reservation-map-title');
     heading.append(make('h3','', '예약 주차면 도면'),make('span','',`${booking.floor} · 12면`));
     target.append(heading);
-    target.append(make('p','ssgp-position-simulation-note','※ 아래 도면은 트레이더스 멤버스 전용 고객의 주차 예약 위치 찾기 시뮬레이션입니다.'));
+    target.append(make('p','ssgp-position-simulation-note','※ 아래 도면은 트레이더스 BIZ 회원 전용 고객의 주차 예약 위치 찾기 시뮬레이션입니다.'));
     const map=make('div','ssgp-reservation-floor-map');
     map.setAttribute('aria-label',`${booking.floor} 예약 주차면 위치`);
     target.append(map);buildMap(map,booking);

@@ -89,9 +89,9 @@ wolgye: {
 const VEHICLE_MAPS = {
   wolgye: {
     floors: [
-      { key: "3층", label: "3층", image: "assets/images/floor3_cropped.png", note: "3층 주차장 도면" },
-      { key: "4층", label: "4층", image: "assets/images/floor4_cropped.png", note: "4층 주차장 도면" },
-      { key: "5층", label: "5층(옥상)", image: "assets/images/floor3_cropped.png", note: "5층 옥상 · 3층 도면 기반 시뮬레이션" }
+      { key: "3층", label: "3층", image: "assets/images/floor3_cropped.png", note: "월계점 3층 주차장 도면" },
+      { key: "4층", label: "4층", image: "assets/images/floor4_cropped.png", note: "월계점 4층 주차장 도면" },
+      { key: "5층", label: "5층(옥상)", image: "assets/images/floor3_cropped.png", note: "5층 옥상 · 3층 도면으로 대체 표시(시뮬레이션)" }
     ],
     pin: { floor: "4층", x: 0.545, y: 0.415 },
     spotName: "4층 · 지정 주차면 (시뮬레이션)"
@@ -106,7 +106,7 @@ const VEHICLE_MAPS = {
       { key: "야외", label: "야외주차장", image: "assets/images/floor3_cropped.png", note: "하남점 야외주차장 · 시뮬레이션 배치도" }
     ],
 
-    pin: { floor: "B2", x: 0.585, y: 0.454 },
+    pin: { floor: "B2", x: 0.588, y: 0.654 },
     spotName: "지하 2층 · 지정 주차면 (시뮬레이션)"
   },
   ilsan: {
