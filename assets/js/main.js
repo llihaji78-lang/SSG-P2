@@ -91,7 +91,7 @@ const VEHICLE_MAPS = {
     floors: [
       { key: "3층", label: "3층", image: "assets/images/floor3_cropped.png", note: "월계점 3층 주차장 도면" },
       { key: "4층", label: "4층", image: "assets/images/floor4_cropped.png", note: "월계점 4층 주차장 도면" },
-      { key: "5층", label: "5층(옥상)", image: "assets/images/floor3_cropped.png", note: "5층 옥상 · 3층 도면으로 대체 표시(시뮬레이션)" }
+      { key: "5층", label: "5층(옥상)", image: "assets/images/wolgye_5f_area.png", note: "5층 옥상 · 가상 도면으로 대체 표시(시뮬레이션)" }
     ],
     pin: { floor: "4층", x: 0.545, y: 0.415 },
     spotName: "4층 · 지정 주차면 (시뮬레이션)"
@@ -113,7 +113,7 @@ const VEHICLE_MAPS = {
     floors: [
       { key: "B2", label: "지하 2층", image: "assets/images/ilsan_b2.png", note: "일산점 지하 2층 주차장 도면" },
       { key: "B3", label: "지하 3층", image: "assets/images/ilsan_b2.png", note: "일산점 지하 3층 · 지하 2층 도면 기반 시뮬레이션" },
-      { key: "옥상", label: "3층(옥상)", image: "assets/images/ilsan_b2.png", note: "일산점 옥상 · 지하 2층 도면 기반 시뮬레이션" }
+      { key: "옥상", label: "3층(옥상)", image: "assets/images/ilsan_roof_area.png", note: "일산점 옥상 · 가상 도면 기반 시뮬레이션" }
     ],
     pin: { floor: "B2", x: 0.58, y: 0.63 },
     spotName: "지하 2층 · 지정 주차면 (시뮬레이션)"

@@ -5,10 +5,10 @@
   // 점포별 예약 도면(시연용). 하남점은 현재 전체 만차(100%) 설정에 맞춰 예약할 수 없습니다.
   // 실제 주차/예약 시스템과 연동된 정보가 아닙니다.
   const STORES = {
-    wolgye: { name:'트레이더스 월계점', floors:[{name:'4층',base:112,occupied:[1,3,5,8,11]}] },
+    wolgye: { name:'트레이더스 월계점', floors:[{name:'３층',base:112,occupied:[1,3,5,8,11]}] },
     hanam: { name:'트레이더스 하남점', full:true, floors:[
-      {name:'지하 2층',base:212,occupied:[1,3,5,8,10]},
-      {name:'지하 3층',base:224,occupied:[0,2,4,7,11]}
+      {name:'지하 1층',base:212,occupied:[1,3,5,8,10]},
+      {name:'지하 2층',base:224,occupied:[0,2,4,7,11]}
     ] },
     ilsan: { name:'트레이더스 일산점', floors:[{name:'지하 2층',base:312,occupied:[1,4,6,9]}] }
   };
