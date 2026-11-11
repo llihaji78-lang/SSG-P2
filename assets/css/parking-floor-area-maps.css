@@ -12,3 +12,19 @@ body[data-page="parking"] .ssgp-area-map-preview .ssgp-area-map-image-wrap img {
 body[data-page="parking"] .ssgp-area-map-preview figcaption {font-weight:600;color:#484848;font-size:12px;}
 body[data-page="parking"] .ssgp-area-map-guide {font-size:11px;color:#858c85;line-height:1.6;margin:4px 0 0;}
 @media(max-width:420px){body[data-page="parking"] .ssgp-area-map-gallery-item{flex-basis:84%;}body[data-page="parking"] .ssgp-area-map-preview .ssgp-area-map-image-wrap{height:126px;}}
+
+/* 월계점 도면의 가상 이미지 안내를 이미지 위에 항상 표시 */
+body[data-page="parking"] .ssgp-area-map-simulation-notice {
+  margin: 0 0 8px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: #f4f6f3;
+  color: #626b62;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+body[data-page="parking"] .ssgp-area-map-preview .ssgp-area-map-simulation-notice {
+  font-size: 11px;
+  padding: 6px 8px;
+}
