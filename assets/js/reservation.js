@@ -32,11 +32,12 @@
   const esc = value => String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const samePlate = (record, plate) => !record || record.plate === plate;
   const POLICY_ITEMS = [
-    '예약 입차는 21:00까지, 출차는 당일 22:00까지 가능합니다. (최대 3시간)',
+    '예약 입차는 10:00~21:00, 출차는 당일 22:00까지 가능합니다. (최대 3시간)',
     '예약 입차 예정 시각부터 1시간이 경과할 때까지 입차하지 않으면 노쇼로 예약이 취소됩니다.',
     '예약 출차 시각을 초과하면 초과 시간 10분당 1,000원의 페널티가 부과됩니다.'
   ];
   const pad = n => String(n).padStart(2, '0');
+  const OPEN_ENTRY_START = 10 * 60; // 첫 입차 선택 시각: 10:00
   const OPEN_ENTRY_END = 21 * 60; // 마지막 입차 선택 시각: 21:00
   const STORE_CLOSE = 22 * 60; // 출차 마감: 같은 날 22:00
   const MAX_BOOKING_MINUTES = 180;
@@ -49,10 +50,11 @@
   const roundedFuture = () => new Date(Math.ceil((Date.now() + 60000) / 600000) * 600000);
   const defaultEntry = () => {
     const nearest = roundedFuture();
+    if (minuteOfDay(nearest) < OPEN_ENTRY_START) return atMinutes(nearest, OPEN_ENTRY_START);
     if (minuteOfDay(nearest) <= OPEN_ENTRY_END) return nearest;
     const next = new Date(nearest);
     next.setDate(next.getDate() + 1);
-    return atMinutes(next, 0);
+    return atMinutes(next, OPEN_ENTRY_START);
   };
   const suggestedExit = entry => new Date(Math.min(entry.getTime() + MAX_BOOKING_MINUTES * 60000, atMinutes(entry, STORE_CLOSE).getTime()));
   const applySuggestedExit = () => {
@@ -71,7 +73,7 @@
     const now = roundedFuture();
     const entry = parseLocalDateTime($('reservationEntryDate').value, $('reservationEntryTime').value);
     const lastExit = entry ? suggestedExit(entry) : null;
-    for (let m=0; m<= (entryMode ? OPEN_ENTRY_END : STORE_CLOSE); m+=10) {
+    for (let m=(entryMode ? OPEN_ENTRY_START : 0); m<= (entryMode ? OPEN_ENTRY_END : STORE_CLOSE); m+=10) {
       const d=parseLocalDateTime(selectedDate, `${pad(Math.floor(m/60))}:${pad(m%60)}`);
       if (!d) continue;
       if (entryMode && d < now) continue;
@@ -121,14 +123,14 @@
       const entry=parseLocalDateTime($('reservationEntryDate').value,$('reservationEntryTime').value);
       if (!entry) return;
       const next=roundedFuture();
-      if (entry < next || minuteOfDay(entry)>OPEN_ENTRY_END) {
+      if (entry < next || minuteOfDay(entry)<OPEN_ENTRY_START || minuteOfDay(entry)>OPEN_ENTRY_END) {
         const valid=permittedSlots('reservationEntryTime');
         if (valid.length) $('reservationEntryTime').value=valid[0];
         else {
           const tomorrow = new Date($('reservationEntryDate').value+'T12:00:00');
           tomorrow.setDate(tomorrow.getDate()+1);
           $('reservationEntryDate').value=localParts(tomorrow).date;
-          $('reservationEntryTime').value='00:00';
+          $('reservationEntryTime').value='10:00';
         }
       }
       applySuggestedExit();
@@ -157,7 +159,7 @@
     if(!entry||!exit)message='예약 입차·출차 날짜와 시간을 모두 선택해 주세요.';
     else if(entry.getTime()<Date.now()-60000)message='예약 입차 일시는 현재 이후로 선택해 주세요.';
     else if (entry.getMinutes()%10 || exit.getMinutes()%10) message='입차·출차 시간은 10분 단위로 선택해 주세요.';
-    else if (minuteOfDay(entry) > OPEN_ENTRY_END) message='예약 입차는 21:00까지만 가능합니다.';
+    else if (minuteOfDay(entry) < OPEN_ENTRY_START || minuteOfDay(entry) > OPEN_ENTRY_END) message='예약 입차는 10:00~21:00 사이에 가능합니다.';
     else if (localParts(entry).date !== localParts(exit).date || minuteOfDay(exit) > STORE_CLOSE) message='예약 출차는 입차 당일 22:00까지 가능합니다.';
     else if(exit<=entry)message='예약 출차 일시는 입차 일시보다 늦어야 해요.';
     else if(exit-entry>MAX_BOOKING_MINUTES*60000)message='최대 예약 가능 시간은 3시간입니다.';
@@ -250,7 +252,7 @@
         [hour,minute]=allowed[0].split(':').map(Number);
       }
       const title=document.createElement('p');title.className='reservation-picker-time-help';
-      title.textContent=inputId.includes('Entry')?'입차 시간은 21:00까지 선택할 수 있어요. (10분 단위)':'출차는 입차 후 최대 3시간, 당일 22:00까지 가능해요.';
+      title.textContent=inputId.includes('Entry')?'입차 시간은 10:00~21:00 사이에 선택할 수 있어요. (10분 단위)':'출차는 입차 후 최대 3시간, 당일 22:00까지 가능해요.';
       body.append(title);
       const fields=document.createElement('div');fields.className='reservation-picker-time-fields';body.append(fields);
       const hourWrap=document.createElement('div');hourWrap.className='reservation-picker-time-choice';
@@ -261,7 +263,10 @@
       const minutes=document.createElement('div');minutes.className='reservation-picker-minute-grid';
       function redraw() {
         hours.replaceChildren();minutes.replaceChildren();
-        for(let h=0;h<24;h++){
+        // 입차: 10~21시, 출차: 10~22시만 표시합니다.
+        // 해당 범위 안에서 예약할 수 없는 시간은 회색 비활성화로 남깁니다.
+        const lastHour = inputId.includes('Entry') ? 21 : 22;
+        for(let h=10;h<=lastHour;h++){
           const b=document.createElement('button');b.type='button';b.className=h===hour?'selected':'';
           b.textContent=pad(h);b.setAttribute('aria-pressed',String(h===hour));
           const minutesForHour=allowed.filter(v=>Number(v.slice(0,2))===h);
