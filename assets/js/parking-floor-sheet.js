@@ -17,7 +17,9 @@
     return cards.map(card => {
       const label = card.querySelector('span')?.textContent?.trim() || '';
       const def = types.find(t => t.test.test(label));
-      const available = card.querySelector('strong')?.textContent?.trim() || '확인 필요';
+      const rawAvailable = card.querySelector('strong')?.textContent?.trim() || '확인 필요';
+      // 전기차 충전구역의 미확인 잔여면수는 층별 상세보기에서만 0면으로 표시합니다.
+      const available = def?.name === '전기차 충전' && rawAvailable === '확인 필요' ? '0면' : rawAvailable;
       return {name: def?.name || label, sign: def?.sign || 'P', available};
     });
   }

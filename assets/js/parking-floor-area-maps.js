@@ -4,8 +4,8 @@
   if (document.body.dataset.page !== 'parking') return;
   const images = {
     wolgye: {
-      '3층': ['wolgye_3f_area.png', '3층 주차구역'],
-      '4층': ['wolgye_4f_area.png', '4층 주차구역'],
+      '3층': ['wolgye_3f_area.png', '3층 주차구역 (가상 도면)'],
+      '4층': ['wolgye_4f_area.png', '4층 주차구역 (가상 도면)'],
       '5층': ['wolgye_5f_area.png', '5층 옥상 주차구역 (가상 도면)']
     },
     hanam: {
@@ -30,7 +30,11 @@
   const imgPath = entry => 'assets/images/' + encodeURIComponent(entry[0]);
   function mapMarkup(floor, entry, overall = false) {
     const caption = entry[1];
+    // 월계점 도면의 가상/시뮬레이션 안내를 이미지 위에도 명확하게 노출합니다.
+    const simulationNotice = store() === 'wolgye'
+      ? '<p class="ssgp-area-map-simulation-notice">※ 가상 도면 · 시뮬레이션</p>' : '';
     return `<figure class="ssgp-area-map ${overall ? 'ssgp-area-map-preview' : ''}">
+      ${simulationNotice}
       <div class="ssgp-area-map-image-wrap"><img src="${imgPath(entry)}" alt="${escapeHTML(caption)} 안내 도면" loading="lazy" decoding="async"></div>
       <figcaption>${escapeHTML(caption)}</figcaption>
     </figure>`;
