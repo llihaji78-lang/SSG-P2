@@ -6,9 +6,20 @@
 
   const BOOKING_KEY = 'ssgp_reservation_v1';
   const VEHICLE_KEY = 'ssgp_vehicle';
+  // Support both current reservation.js numbering and reservations saved by earlier builds.
+  // Do not rewrite stored bookings or change the unrelated ordinary parking-position map.
   const FLOOR_DATA = {
-    wolgye: [{name:'4층',base:112,occupied:[1,3,5,8,11]}],
-    hanam: [{name:'지하 2층',base:212,occupied:[1,3,5,8,10]}, {name:'지하 3층',base:224,occupied:[0,2,4,7,11]}],
+    wolgye: [
+      {name:'３층',base:112,occupied:[1,3,5,8,11]}, // current reservation page (full-width ３)
+      {name:'3층',base:112,occupied:[1,3,5,8,11]},  // normalized name
+      {name:'4층',base:112,occupied:[1,3,5,8,11]}   // previous reservation page
+    ],
+    hanam: [
+      {name:'지하 1층',base:212,occupied:[1,3,5,8,10]}, // current reservation page
+      {name:'지하 2층',base:224,occupied:[0,2,4,7,11]}, // current reservation page
+      {name:'지하 2층',base:212,occupied:[1,3,5,8,10]}, // previous reservation page
+      {name:'지하 3층',base:224,occupied:[0,2,4,7,11]}  // previous reservation page
+    ],
     ilsan: [{name:'지하 2층',base:312,occupied:[1,4,6,9]}]
   };
   const $ = id => document.getElementById(id);
