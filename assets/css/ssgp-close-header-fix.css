@@ -1,0 +1,69 @@
+/* ============================================
+   SSG-P 닫기(X) 색상 통일 + 대상 점포 확인 상단 정리
+   assets/css/style.css 맨 아래에 붙여넣기
+   ============================================ */
+
+/* 점포 선택 바텀시트: 파란 X -> 다른 페이지와 같은 회색 X */
+.store-drawer .drawer-head .close-btn {
+  color: #484848 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* 나의 주차권 상세 팝업: X 색상·외곽선 통일 */
+.ssgp-ticket-backdrop .ssgp-ticket-dialog-close {
+  color: #484848 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* 대상 점포 확인 페이지에서만 상단 로고 숨기기 */
+body[data-page="stores"] .app > .logo-row {
+  display: none !important;
+}
+
+/* 제목과 닫기 버튼을 페이지 최상단에 배치 */
+body[data-page="stores"] .list-page {
+  padding-top: 12px !important;
+}
+body[data-page="stores"] .modal-top {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 40px;
+  align-items: center;
+  min-height: 48px;
+  margin-bottom: 22px;
+}
+body[data-page="stores"] .modal-top h1 {
+  color: #484848 !important;
+  font-size: 21px;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+}
+body[data-page="stores"] .modal-top .x-btn {
+  color: #484848 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  width: 40px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* 키보드 사용자를 위해 포커스 표시는 유지 */
+.store-drawer .drawer-head .close-btn:focus-visible,
+.ssgp-ticket-backdrop .ssgp-ticket-dialog-close:focus-visible,
+body[data-page="stores"] .modal-top .x-btn:focus-visible {
+  outline: 2px solid #016922;
+  outline-offset: 2px;
+}
