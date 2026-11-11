@@ -785,11 +785,13 @@ function initNearbyNavigation() {
   }
 
   box.append(heading, detail, link);
-  const predSection = document.querySelector("#predictionGrid")?.closest("section");
   const alertSection = document.querySelector("#scheduledAlertSection");
-  if (predSection) predSection.insertAdjacentElement("afterend", box);
-  else if (alertSection) alertSection.before(box);
-  else document.querySelector("main")?.appendChild(box);
+
+if (alertSection) {
+  alertSection.insertAdjacentElement("afterend", box);
+} else {
+  document.querySelector("main")?.appendChild(box);
+}
 }
 
 document.addEventListener("DOMContentLoaded", () => {
