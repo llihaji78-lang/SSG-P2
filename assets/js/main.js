@@ -11,8 +11,8 @@ wolgye: {
     rate: 84,
     total: 1274,
     available: 206,
-    normal: 189,
-    disabled: 13,
+    normal: 199,
+    disabled: 3,
     ev: 4
   },
 
@@ -30,8 +30,8 @@ wolgye: {
       rate: 95,
       total: 420,
       available: 22,
-      normal: 16,
-      disabled: 2,
+      normal: 18,
+      disabled: 0,
       ev: 4
     },
 
@@ -39,8 +39,8 @@ wolgye: {
       rate: 62,
       total: 424,
       available: 160,
-      normal: 152,
-      disabled: 8,
+      normal: 160,
+      disabled: 0,
       ev: null
     }
   },
@@ -72,11 +72,11 @@ wolgye: {
     ]
   },
   ilsan: {
-    overall: { rate: 61, total: 1374, available: 536, normal: 506, disabled: 18, ev: 12 },
+    overall: { rate: 61, total: 1374, available: 536, normal: 512, disabled: 12, ev: 12 },
     floors: {
       "B2": { rate: 58, total: 520, available: 218, normal: 210, disabled: 8, ev: null },
       "B3": { rate: 68, total: 504, available: 162, normal: 146, disabled: 4, ev: 12 },
-      "옥상": { rate: 55, total: 350, available: 156, normal: 150, disabled: 6, ev: null }
+      "옥상": { rate: 55, total: 350, available: 156, normal: 156, disabled: 0, ev: null }
     },
     prediction: [
       { m: 10, rate: 65, waitMin: 0, waitMax: 2 },

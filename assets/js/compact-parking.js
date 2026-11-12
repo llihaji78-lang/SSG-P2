@@ -4,10 +4,10 @@
 (function () {
   "use strict";
   const simulatedCompact = {
-    wolgye: { "3층": 2, "4층": 3, "5층": 2, "5층(옥상)": 2 },
+    wolgye: { "3층": 2, "4층": 0, "5층": 0, "5층(옥상)": 0 },
     hanam: { "B1": 2, "B2": 3, "B3": 2, "3층": 2, "4층": 3, "야외": 2, "야외주차장": 2,
       "지하 1층": 2, "지하 2층": 3, "지하 3층": 2, "지상 3층(주말 운영)": 2, "지상 4층(주말 운영)": 3 },
-    ilsan: { "B2": 3, "B3": 2, "옥상": 3, "옥상주차장": 3, "지하 2층": 3, "지하 3층": 2 },
+    ilsan: { "B2": 3, "B3": 2, "옥상": 0, "옥상주차장": 0, "지하 2층": 3, "지하 3층": 2 },
     guseong: { "B1": 2, "B2": 3 }
   };
   function numberFromStrong(element) {
@@ -42,7 +42,7 @@
       // 만차 층의 경차 잔여면은 반드시 0면.
       const rateMatch=panel.querySelector(".floor-summary p")?.textContent.match(/점유율\s*(\d+)%/);
       const isFull=rateMatch && Number(rateMatch[1])>=100;
-      const requested=Number(config[floor]||2);
+      const requested=Number(config[floor] ?? 2);
       const compact=isFull?0:Math.min(requested,Math.max(0,initial??0));
       if(initial!==null)normal.textContent=`${initial-compact}면`;
       row.appendChild(createCompactCard(compact));
@@ -57,7 +57,7 @@
       overallRow.appendChild(createCompactCard(compact));
       const info=document.createElement("p");
       info.className="ssgp-compact-notice";
-      info.textContent="※ 경차구역 잔여면수는 층별 2~3면을 기준으로 설정한 시연용 수치입니다.";
+      info.textContent="※ 경차구역 잔여면수는 층별로 0~3면을 설정한 시연용 수치입니다.";
       overallRow.after(info);
     }
   }
